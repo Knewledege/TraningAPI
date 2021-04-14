@@ -10,9 +10,14 @@
 		5C0D0FB8A4DC1FCE886D25F6 /* Pods_TraningAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8187209663F7CB0CE7CFDE7 /* Pods_TraningAPI.framework */; };
 		92FD03F62390782821597E0C /* Pods_TraningAPITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A41CF9A2B61FBA6ECAF21350 /* Pods_TraningAPITests.framework */; };
 		A7DC3D2BF459D829FA2D3AEC /* Pods_TraningAPI_TraningAPIUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0D87D9414A6491616717D9E /* Pods_TraningAPI_TraningAPIUITests.framework */; };
+		FFAC3E4B26268A980015DEDB /* PrefecturesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAC3E4A26268A980015DEDB /* PrefecturesModel.swift */; };
+		FFAC3E4E26268C8E0015DEDB /* GithubAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAC3E4D26268C8E0015DEDB /* GithubAPI.swift */; };
+		FFAC3E50262691810015DEDB /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFAC3E4F262691810015DEDB /* Alamofire.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		FFAC3E522626B5790015DEDB /* PrefecturesEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAC3E512626B5790015DEDB /* PrefecturesEntity.swift */; };
+		FFAC3E542626BA2D0015DEDB /* PrefecturesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAC3E532626BA2D0015DEDB /* PrefecturesPresenter.swift */; };
 		FFD148A426267B1300263EC8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD148A326267B1300263EC8 /* AppDelegate.swift */; };
 		FFD148A626267B1300263EC8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD148A526267B1300263EC8 /* SceneDelegate.swift */; };
-		FFD148A826267B1300263EC8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD148A726267B1300263EC8 /* ViewController.swift */; };
+		FFD148A826267B1300263EC8 /* PrefecturesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD148A726267B1300263EC8 /* PrefecturesList.swift */; };
 		FFD148AB26267B1300263EC8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFD148A926267B1300263EC8 /* Main.storyboard */; };
 		FFD148AD26267B1400263EC8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFD148AC26267B1400263EC8 /* Assets.xcassets */; };
 		FFD148B026267B1400263EC8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFD148AE26267B1400263EC8 /* LaunchScreen.storyboard */; };
@@ -47,10 +52,15 @@
 		BA56353ECD607438420047EC /* Pods-TraningAPITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TraningAPITests.debug.xcconfig"; path = "Target Support Files/Pods-TraningAPITests/Pods-TraningAPITests.debug.xcconfig"; sourceTree = "<group>"; };
 		BB2AF43914CA8FA048654056 /* Pods-TraningAPI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TraningAPI.debug.xcconfig"; path = "Target Support Files/Pods-TraningAPI/Pods-TraningAPI.debug.xcconfig"; sourceTree = "<group>"; };
 		D0D87D9414A6491616717D9E /* Pods_TraningAPI_TraningAPIUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TraningAPI_TraningAPIUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FFAC3E4A26268A980015DEDB /* PrefecturesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrefecturesModel.swift; sourceTree = "<group>"; };
+		FFAC3E4D26268C8E0015DEDB /* GithubAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubAPI.swift; sourceTree = "<group>"; };
+		FFAC3E4F262691810015DEDB /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FFAC3E512626B5790015DEDB /* PrefecturesEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrefecturesEntity.swift; sourceTree = "<group>"; };
+		FFAC3E532626BA2D0015DEDB /* PrefecturesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrefecturesPresenter.swift; sourceTree = "<group>"; };
 		FFD148A026267B1300263EC8 /* TraningAPI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TraningAPI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFD148A326267B1300263EC8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FFD148A526267B1300263EC8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		FFD148A726267B1300263EC8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		FFD148A726267B1300263EC8 /* PrefecturesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrefecturesList.swift; sourceTree = "<group>"; };
 		FFD148AA26267B1300263EC8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FFD148AC26267B1400263EC8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FFD148AF26267B1400263EC8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -68,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FFAC3E50262691810015DEDB /* Alamofire.framework in Frameworks */,
 				5C0D0FB8A4DC1FCE886D25F6 /* Pods_TraningAPI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -94,6 +105,7 @@
 		4DB70FCFA218FF48291D47FF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FFAC3E4F262691810015DEDB /* Alamofire.framework */,
 				A8187209663F7CB0CE7CFDE7 /* Pods_TraningAPI.framework */,
 				D0D87D9414A6491616717D9E /* Pods_TraningAPI_TraningAPIUITests.framework */,
 				A41CF9A2B61FBA6ECAF21350 /* Pods_TraningAPITests.framework */,
@@ -117,6 +129,8 @@
 		FFAC3E4726267D090015DEDB /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				FFAC3E4A26268A980015DEDB /* PrefecturesModel.swift */,
+				FFAC3E512626B5790015DEDB /* PrefecturesEntity.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -124,6 +138,7 @@
 		FFAC3E4826267D100015DEDB /* View */ = {
 			isa = PBXGroup;
 			children = (
+				FFD148A726267B1300263EC8 /* PrefecturesList.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -131,8 +146,17 @@
 		FFAC3E4926267D190015DEDB /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				FFAC3E532626BA2D0015DEDB /* PrefecturesPresenter.swift */,
 			);
 			path = Presenter;
+			sourceTree = "<group>";
+		};
+		FFAC3E4C26268C790015DEDB /* API */ = {
+			isa = PBXGroup;
+			children = (
+				FFAC3E4D26268C8E0015DEDB /* GithubAPI.swift */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 		FFD1489726267B1300263EC8 = {
@@ -160,12 +184,12 @@
 		FFD148A226267B1300263EC8 /* TraningAPI */ = {
 			isa = PBXGroup;
 			children = (
+				FFAC3E4C26268C790015DEDB /* API */,
 				FFAC3E4926267D190015DEDB /* Presenter */,
 				FFAC3E4826267D100015DEDB /* View */,
 				FFAC3E4726267D090015DEDB /* Model */,
 				FFD148A326267B1300263EC8 /* AppDelegate.swift */,
 				FFD148A526267B1300263EC8 /* SceneDelegate.swift */,
-				FFD148A726267B1300263EC8 /* ViewController.swift */,
 				FFD148A926267B1300263EC8 /* Main.storyboard */,
 				FFD148AC26267B1400263EC8 /* Assets.xcassets */,
 				FFD148AE26267B1400263EC8 /* LaunchScreen.storyboard */,
@@ -431,8 +455,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FFD148A826267B1300263EC8 /* ViewController.swift in Sources */,
+				FFD148A826267B1300263EC8 /* PrefecturesList.swift in Sources */,
+				FFAC3E542626BA2D0015DEDB /* PrefecturesPresenter.swift in Sources */,
+				FFAC3E4E26268C8E0015DEDB /* GithubAPI.swift in Sources */,
+				FFAC3E522626B5790015DEDB /* PrefecturesEntity.swift in Sources */,
 				FFD148A426267B1300263EC8 /* AppDelegate.swift in Sources */,
+				FFAC3E4B26268A980015DEDB /* PrefecturesModel.swift in Sources */,
 				FFD148A626267B1300263EC8 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
