@@ -1,6 +1,0 @@
-framework module Pods_TraningAPI_TraningAPIUITests {
-  umbrella header "Pods-TraningAPI-TraningAPIUITests-umbrella.h"
-
-  export *
-  module * { export * }
-}
