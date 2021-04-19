@@ -45,5 +45,6 @@ extension PrefecturesModel:PrefecturesInput{
     }
     func GetprefecturesByID(id: Int){
         
+        
     }
 }

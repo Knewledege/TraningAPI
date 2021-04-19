@@ -11,6 +11,7 @@ protocol  DetailsPresenterInput:class{
     func GetDetails(id: Int)
 }
 protocol  DetailsPresenterOutput:class {
+    func SetTitle(name: String)
     func SetContent(details: [[String]])
 }
 
@@ -24,9 +25,15 @@ class DetailsPresenter{
     }
 }
 extension DetailsPresenter: DetailsPresenterInput{
+    
     func GetDetails(id: Int){
+        
         model.GetprefecturesByID(id: id)
-        let details = Details.DetailsToArray(prefectures: model.details!)
-        self.view.SetContent(details: details)
+        model.GetPregectures(completion: { prefectures in
+            let details = Details.DetailsToArray(prefectures: (self.model.prefectures?.first!)!)
+            self.view.SetContent(details: details)
+            self.view.SetTitle(name: (self.model.prefectures?.first!.name_ja)!)
+        })
+
     }
 }

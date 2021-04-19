@@ -39,16 +39,18 @@ class DetailsView: UIViewController {
         self.view.addSubview(titleLabel)
     }
     private func TitleLabelLyout(){
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 100).isActive = true
         titleLabel.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.8).isActive = true
         titleLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         titleLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
     private func CreateDetailsFrame(){
-        let detailsFrame = CreateStackView(axis:.vertical, aligment: .center,  distribution: .equalSpacing, spacing: 10)
+        detailsFrame = CreateStackView(axis:.vertical, aligment: .fill,  distribution: .equalSpacing, spacing: 10)
         self.view.addSubview(detailsFrame)
     }
     private func DetailsFrameLayout(){
+        detailsFrame.translatesAutoresizingMaskIntoConstraints = false
         detailsFrame.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor, constant: 50).isActive = true
         detailsFrame.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.8).isActive = true
         detailsFrame.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
@@ -73,9 +75,12 @@ class DetailsView: UIViewController {
 
 }
 extension DetailsView: DetailsPresenterOutput{
+    func SetTitle(name: String){
+        titleLabel.text = name
+    }
     func SetContent(details: [[String]]){
         details.forEach{ values in
-            let content = CreateStackView(axis: .horizontal, aligment: .leading, distribution: .fillEqually, spacing: 0)
+            let content = CreateStackView(axis: .horizontal, aligment: .fill, distribution: .fillEqually, spacing: 0)
             values.forEach{ value in
                 let label = UILabel(frame: .zero)
                 label.text = value
