@@ -41,3 +41,19 @@ class DecodePrefectures{
         }
     }
 }
+
+class Details{
+    static func DetailsToArray(prefectures: Prefectures) -> [[String]]{
+        var details: [[String]] = [[]]
+        details = [
+            ["人口", prefectures.population.description],
+            ["感染者数", prefectures.cases.description, prefectures.last_updated.cases_date.description],
+            ["死者数", prefectures.deaths.description, prefectures.last_updated.deaths_date.description],
+            ["PCR検査数", prefectures.pcr.description, prefectures.last_updated.pcr_date.description],
+            ["入院者数", prefectures.hospitalize.description, prefectures.last_updated.hospitalize_date.description],
+            ["重症者数", prefectures.severe.description, prefectures.last_updated.severe_date.description],
+            ["退院者数", prefectures.discharge.description, prefectures.last_updated.discharge_date.description],
+            ["自覚症状者数", prefectures.symptom_confirming.description, prefectures.last_updated.symptom_confirming_date.description] ]
+        return details
+    }
+}

@@ -37,7 +37,7 @@ extension PrefecturesList:PrefecturesView{
 extension PrefecturesList:UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //遷移とPresenterから情報を渡す
-        StoryBoard.Perform(indexRow: indexPath.row, to: Board.details, from: self)
+        StoryBoard.Perform(id: indexPath.row + 1, to: Board.details, from: self)
     }
 }
 extension PrefecturesList:UITableViewDataSource{

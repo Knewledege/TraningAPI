@@ -11,19 +11,23 @@ import PromiseKit
 
 protocol PrefecturesInput{
     func GetPregectures(completion: @escaping ([Prefectures]?) -> Void)
+    func GetprefecturesByID(id: Int)
     var prefectures: [Prefectures]? { get }
+    var details: Prefectures? { get }
 }
 
-
-class PrefecturesModel:PrefecturesInput{
-    
+class PrefecturesModel{
     internal var prefectures: [Prefectures]? = []
+    internal var details: Prefectures? = nil
     private let api:GithubAPI
     
     init(api: GithubAPI = GithubAPI()){
         self.api = api
     }
-    
+}
+
+
+extension PrefecturesModel:PrefecturesInput{
     //都道府県情報一覧取得
     func GetPregectures(completion: @escaping ([Prefectures]?) -> Void){
         //API処理
@@ -39,5 +43,7 @@ class PrefecturesModel:PrefecturesInput{
             }
         })
     }
-    
+    func GetprefecturesByID(id: Int){
+        
+    }
 }

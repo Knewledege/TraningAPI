@@ -9,18 +9,52 @@
 import UIKit
 
 class DetailsView: UIViewController {
-
+    
+    var titleLabel: UILabel!
+    var detailsFrame: UIStackView!
+    var id: Int!
+    private var preseter: DetailsPresenterInput!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        preseter = DetailsPresenter(view: self)
+        
         self.view.backgroundColor = .white
-        // Do any additional setup after loading the view.
+        
+        CreateTitleLabel()
+        TitleLabelLyout()
+        
+        CreateDetailsFrame()
+        DetailsFrameLayout()
+        
+        preseter.GetDetails(id: self.id)
+    }
+    
+    private func CreateTitleLabel(){
+        titleLabel = UILabel(frame: .zero)
+        titleLabel.font = UIFont.systemFont(ofSize: 26, weight: .bold)
+        titleLabel.backgroundColor = .orange
+        titleLabel.textAlignment = .center
+        self.view.addSubview(titleLabel)
+    }
+    private func TitleLabelLyout(){
+        titleLabel.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 100).isActive = true
+        titleLabel.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.8).isActive = true
+        titleLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        titleLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
     private func CreateDetailsFrame(){
         let detailsFrame = CreateStackView(axis:.vertical, aligment: .center,  distribution: .equalSpacing, spacing: 10)
-        
+        self.view.addSubview(detailsFrame)
+    }
+    private func DetailsFrameLayout(){
+        detailsFrame.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor, constant: 50).isActive = true
+        detailsFrame.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.8).isActive = true
+        detailsFrame.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
     }
     private func CreateStackView(axis:NSLayoutConstraint.Axis, aligment:UIStackView.Alignment,  distribution:UIStackView.Distribution, spacing:CGFloat) -> UIStackView {
-        let stackView = UIStackView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height))
+        let stackView = UIStackView(frame: .zero)
         stackView.axis = axis
         stackView.alignment = aligment
         stackView.distribution = distribution
@@ -37,4 +71,19 @@ class DetailsView: UIViewController {
     }
     */
 
+}
+extension DetailsView: DetailsPresenterOutput{
+    func SetContent(details: [[String]]){
+        details.forEach{ values in
+            let content = CreateStackView(axis: .horizontal, aligment: .leading, distribution: .fillEqually, spacing: 0)
+            values.forEach{ value in
+                let label = UILabel(frame: .zero)
+                label.text = value
+                label.adjustsFontSizeToFitWidth = true
+                content.addArrangedSubview(label)
+            }
+            detailsFrame.addArrangedSubview(content)
+        }
+        
+    }
 }
