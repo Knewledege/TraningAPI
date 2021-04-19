@@ -28,4 +28,16 @@ struct Prefectures: Codable {
         let discharge_date:Int
         let symptom_confirming_date:Int
     }
+
+}
+
+class DecodePrefectures{
+    var prefectures: [Prefectures]?
+    init(data:Data){
+        do{
+            self.prefectures = try JSONDecoder().decode([Prefectures].self, from: data)
+        }catch{
+//            prefectures = nil
+        }
+    }
 }

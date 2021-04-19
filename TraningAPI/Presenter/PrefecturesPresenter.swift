@@ -13,13 +13,20 @@ protocol PrefecturesView: class {
     func setList()
 }
 protocol PrefecturesPresenterInput: class {
-    func GetPrefectures()
+    var numberOfPrefectures: Int { get }
+    var storyboard:StoryBoard { get }
+    func GetPrefecturesModel()
+    func GetPrefectureName(index:Int) -> String
 }
 
 class PrefecturesPresenter{
     private weak var view: PrefecturesView!
     private var model: PrefecturesInput
+    var storyboard: StoryBoard = StoryBoard()
     
+    var numberOfPrefectures: Int {
+        return model.prefectures!.count
+    }
     
     //初期化 この時点でもうモデル知ってる必要ある？
     //それともViewから指定すればいい？？
@@ -28,15 +35,18 @@ class PrefecturesPresenter{
         self.model = model
     }
     
-
-    
 }
-extension PrefecturesPresenter:PrefecturesPresenterInput{
-    //都道府県情報一覧取得
-    func GetPrefectures(){
+extension PrefecturesPresenter: PrefecturesPresenterInput{
+    ///都道府県情報一覧取得
+    func GetPrefecturesModel(){
         print("Modelに情報を取りにいかせる")
-        self.model.Get()
-        print("Modelの結果をViewに渡す")
-        self.view.setList()
+        self.model.GetPregectures(completion: { (prefectures:[Prefectures]?) in
+            print("Modelの結果をViewに渡す")
+            self.view.setList()
+        })
+    }
+    
+    func GetPrefectureName(index:Int) -> String{
+        return self.model.prefectures?[index].name_ja ?? "取得できませんでした"
     }
 }

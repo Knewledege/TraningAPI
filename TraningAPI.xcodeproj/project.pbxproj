@@ -3,18 +3,23 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 53;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		5C0D0FB8A4DC1FCE886D25F6 /* Pods_TraningAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8187209663F7CB0CE7CFDE7 /* Pods_TraningAPI.framework */; };
 		92FD03F62390782821597E0C /* Pods_TraningAPITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A41CF9A2B61FBA6ECAF21350 /* Pods_TraningAPITests.framework */; };
 		A7DC3D2BF459D829FA2D3AEC /* Pods_TraningAPI_TraningAPIUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0D87D9414A6491616717D9E /* Pods_TraningAPI_TraningAPIUITests.framework */; };
+		AAEDBB5926297464000FE023 /* StoryBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEDBB5826297464000FE023 /* StoryBoard.swift */; };
+		AAEDBB612629758D000FE023 /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEDBB602629758D000FE023 /* DetailsView.swift */; };
 		FFAC3E4B26268A980015DEDB /* PrefecturesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAC3E4A26268A980015DEDB /* PrefecturesModel.swift */; };
 		FFAC3E4E26268C8E0015DEDB /* GithubAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAC3E4D26268C8E0015DEDB /* GithubAPI.swift */; };
 		FFAC3E50262691810015DEDB /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFAC3E4F262691810015DEDB /* Alamofire.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		FFAC3E522626B5790015DEDB /* PrefecturesEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAC3E512626B5790015DEDB /* PrefecturesEntity.swift */; };
 		FFAC3E542626BA2D0015DEDB /* PrefecturesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAC3E532626BA2D0015DEDB /* PrefecturesPresenter.swift */; };
+		FFC6D0B32627F23D007920C5 /* PrefecturesListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC6D0B12627F23D007920C5 /* PrefecturesListTableViewCell.swift */; };
+		FFC6D0B42627F23D007920C5 /* PrefecturesListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFC6D0B22627F23D007920C5 /* PrefecturesListTableViewCell.xib */; };
+		FFC6D0B6262820E4007920C5 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC6D0B5262820E4007920C5 /* APIError.swift */; };
 		FFD148A426267B1300263EC8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD148A326267B1300263EC8 /* AppDelegate.swift */; };
 		FFD148A626267B1300263EC8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD148A526267B1300263EC8 /* SceneDelegate.swift */; };
 		FFD148A826267B1300263EC8 /* PrefecturesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD148A726267B1300263EC8 /* PrefecturesList.swift */; };
@@ -49,6 +54,8 @@
 		907E9799CFAF0D7662EC1BF7 /* Pods-TraningAPI-TraningAPIUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TraningAPI-TraningAPIUITests.release.xcconfig"; path = "Target Support Files/Pods-TraningAPI-TraningAPIUITests/Pods-TraningAPI-TraningAPIUITests.release.xcconfig"; sourceTree = "<group>"; };
 		A41CF9A2B61FBA6ECAF21350 /* Pods_TraningAPITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TraningAPITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8187209663F7CB0CE7CFDE7 /* Pods_TraningAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TraningAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AAEDBB5826297464000FE023 /* StoryBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryBoard.swift; sourceTree = "<group>"; };
+		AAEDBB602629758D000FE023 /* DetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsView.swift; sourceTree = "<group>"; };
 		BA56353ECD607438420047EC /* Pods-TraningAPITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TraningAPITests.debug.xcconfig"; path = "Target Support Files/Pods-TraningAPITests/Pods-TraningAPITests.debug.xcconfig"; sourceTree = "<group>"; };
 		BB2AF43914CA8FA048654056 /* Pods-TraningAPI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TraningAPI.debug.xcconfig"; path = "Target Support Files/Pods-TraningAPI/Pods-TraningAPI.debug.xcconfig"; sourceTree = "<group>"; };
 		D0D87D9414A6491616717D9E /* Pods_TraningAPI_TraningAPIUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TraningAPI_TraningAPIUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -57,6 +64,9 @@
 		FFAC3E4F262691810015DEDB /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFAC3E512626B5790015DEDB /* PrefecturesEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrefecturesEntity.swift; sourceTree = "<group>"; };
 		FFAC3E532626BA2D0015DEDB /* PrefecturesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrefecturesPresenter.swift; sourceTree = "<group>"; };
+		FFC6D0B12627F23D007920C5 /* PrefecturesListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrefecturesListTableViewCell.swift; sourceTree = "<group>"; };
+		FFC6D0B22627F23D007920C5 /* PrefecturesListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrefecturesListTableViewCell.xib; sourceTree = "<group>"; };
+		FFC6D0B5262820E4007920C5 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		FFD148A026267B1300263EC8 /* TraningAPI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TraningAPI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFD148A326267B1300263EC8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FFD148A526267B1300263EC8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -126,6 +136,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		AAEDBB572629743C000FE023 /* StoryBoard */ = {
+			isa = PBXGroup;
+			children = (
+				AAEDBB5826297464000FE023 /* StoryBoard.swift */,
+			);
+			path = StoryBoard;
+			sourceTree = "<group>";
+		};
 		FFAC3E4726267D090015DEDB /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -139,6 +157,9 @@
 			isa = PBXGroup;
 			children = (
 				FFD148A726267B1300263EC8 /* PrefecturesList.swift */,
+				FFC6D0B12627F23D007920C5 /* PrefecturesListTableViewCell.swift */,
+				FFC6D0B22627F23D007920C5 /* PrefecturesListTableViewCell.xib */,
+				AAEDBB602629758D000FE023 /* DetailsView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -155,6 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				FFAC3E4D26268C8E0015DEDB /* GithubAPI.swift */,
+				FFC6D0B5262820E4007920C5 /* APIError.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -184,10 +206,11 @@
 		FFD148A226267B1300263EC8 /* TraningAPI */ = {
 			isa = PBXGroup;
 			children = (
-				FFAC3E4C26268C790015DEDB /* API */,
-				FFAC3E4926267D190015DEDB /* Presenter */,
 				FFAC3E4826267D100015DEDB /* View */,
+				FFAC3E4926267D190015DEDB /* Presenter */,
 				FFAC3E4726267D090015DEDB /* Model */,
+				FFAC3E4C26268C790015DEDB /* API */,
+				AAEDBB572629743C000FE023 /* StoryBoard */,
 				FFD148A326267B1300263EC8 /* AppDelegate.swift */,
 				FFD148A526267B1300263EC8 /* SceneDelegate.swift */,
 				FFD148A926267B1300263EC8 /* Main.storyboard */,
@@ -301,7 +324,7 @@
 				};
 			};
 			buildConfigurationList = FFD1489B26267B1300263EC8 /* Build configuration list for PBXProject "TraningAPI" */;
-			compatibilityVersion = "Xcode 11.4";
+			compatibilityVersion = "Xcode 10.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -325,6 +348,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FFC6D0B42627F23D007920C5 /* PrefecturesListTableViewCell.xib in Resources */,
 				FFD148B026267B1400263EC8 /* LaunchScreen.storyboard in Resources */,
 				FFD148AD26267B1400263EC8 /* Assets.xcassets in Resources */,
 				FFD148AB26267B1300263EC8 /* Main.storyboard in Resources */,
@@ -455,13 +479,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAEDBB5926297464000FE023 /* StoryBoard.swift in Sources */,
 				FFD148A826267B1300263EC8 /* PrefecturesList.swift in Sources */,
 				FFAC3E542626BA2D0015DEDB /* PrefecturesPresenter.swift in Sources */,
 				FFAC3E4E26268C8E0015DEDB /* GithubAPI.swift in Sources */,
 				FFAC3E522626B5790015DEDB /* PrefecturesEntity.swift in Sources */,
+				FFC6D0B32627F23D007920C5 /* PrefecturesListTableViewCell.swift in Sources */,
+				AAEDBB612629758D000FE023 /* DetailsView.swift in Sources */,
 				FFD148A426267B1300263EC8 /* AppDelegate.swift in Sources */,
 				FFAC3E4B26268A980015DEDB /* PrefecturesModel.swift in Sources */,
 				FFD148A626267B1300263EC8 /* SceneDelegate.swift in Sources */,
+				FFC6D0B6262820E4007920C5 /* APIError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

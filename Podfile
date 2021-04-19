@@ -4,7 +4,7 @@
 target 'TraningAPI' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
-  pod "PromiseKit"
+  pod "PromiseKit", "~> 6.8"
   pod "Alamofire"
 
 

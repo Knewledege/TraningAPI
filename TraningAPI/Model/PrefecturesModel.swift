@@ -7,13 +7,17 @@
 //
 
 import Foundation
+import PromiseKit
 
 protocol PrefecturesInput{
-    func Get()
+    func GetPregectures(completion: @escaping ([Prefectures]?) -> Void)
+    var prefectures: [Prefectures]? { get }
 }
 
 
 class PrefecturesModel:PrefecturesInput{
+    
+    internal var prefectures: [Prefectures]? = []
     private let api:GithubAPI
     
     init(api: GithubAPI = GithubAPI()){
@@ -21,11 +25,18 @@ class PrefecturesModel:PrefecturesInput{
     }
     
     //都道府県情報一覧取得
-    func Get(){
-        print("Presenterから取得に依頼が来たのでAPIを叩く")
+    func GetPregectures(completion: @escaping ([Prefectures]?) -> Void){
         //API処理
-        self.api.getAPIInformations(callback: { result in
-          print("結果をコールバックで返す")
+        self.api.PrefecturesAPI(callback: { (result,error) in
+            print("結果をコールバックで返す")
+            if let error = error{
+                print("エラー内容：",error)
+
+            }
+            if let result = result{
+                self.prefectures = DecodePrefectures(data: result).prefectures
+                completion(self.prefectures)
+            }
         })
     }
     

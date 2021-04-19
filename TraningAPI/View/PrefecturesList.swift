@@ -11,18 +11,44 @@ import UIKit
 class PrefecturesList: UIViewController{
     
     private var presenter: PrefecturesPresenterInput!
+
+    @IBOutlet weak var prefecturesListTableView: UITableView!{
+        didSet{
+            prefecturesListTableView.delegate = self
+            prefecturesListTableView.dataSource = self
+            prefecturesListTableView.register(UINib(nibName: PrefecturesListTableViewCell.cellIdentifer, bundle: nil), forCellReuseIdentifier: PrefecturesListTableViewCell.cellIdentifer)
+        }
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter = PrefecturesPresenter(view: self)
         print("Presenterに情報取得の指示")
-        presenter.GetPrefectures()
-
+        presenter.GetPrefecturesModel()
     }
 }
 extension PrefecturesList:PrefecturesView{
     func setList() {
         print("Presenterから再描画の指示があったのでVIewを更新する")
+        prefecturesListTableView.reloadData()
     }
 }
-
+extension PrefecturesList:UITableViewDelegate{
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //遷移とPresenterから情報を渡す
+        StoryBoard.Perform(indexRow: indexPath.row, to: Board.details, from: self)
+    }
+}
+extension PrefecturesList:UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return presenter.numberOfPrefectures
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: PrefecturesListTableViewCell.cellIdentifer, for: indexPath) as! PrefecturesListTableViewCell
+        cell.NameLabelConfigure(name: presenter.GetPrefectureName(index: indexPath.row))
+        return cell
+    }
+    
+}
