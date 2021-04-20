@@ -25,7 +25,7 @@ class PrefecturesPresenter{
     var storyboard: StoryBoard = StoryBoard()
     
     var numberOfPrefectures: Int {
-        return model.prefectures!.count
+        return model.prefectures?.count ?? 0
     }
     
     //初期化 この時点でもうモデル知ってる必要ある？

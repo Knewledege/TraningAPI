@@ -6,6 +6,7 @@ target 'TraningAPI' do
   use_frameworks!
   pod "PromiseKit", "~> 6.8"
   pod "Alamofire"
+  pod "RealmSwift"
 
 
   # Pods for TraningAPI
