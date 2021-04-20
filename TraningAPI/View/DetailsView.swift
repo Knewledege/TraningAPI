@@ -82,7 +82,7 @@ extension DetailsView: DetailsPresenterOutput{
         details.forEach{ values in
             let content = CreateStackView(axis: .horizontal, aligment: .fill, distribution: .fillEqually, spacing: 0)
             values.forEach{ value in
-                let label = UILabel(frame: .zero)
+                let label = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
                 label.text = value
                 label.adjustsFontSizeToFitWidth = true
                 content.addArrangedSubview(label)

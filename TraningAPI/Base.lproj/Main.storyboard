@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -21,25 +19,46 @@
                                 <rect key="frame" x="0.0" y="151" width="414" height="745"/>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="都道府県一覧" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RWv-xj-BAY">
-                                <rect key="frame" x="104" y="91" width="207" height="33.5"/>
+                                <rect key="frame" x="104" y="80" width="207" height="33.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="最終更新時間" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cF8-bT-xZ3">
+                                <rect key="frame" x="74" y="122" width="104" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="最終更新時間　表示ラベル" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Cr-2D-kbR">
+                                <rect key="frame" x="186" y="121" width="208" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="9Cr-2D-kbR" firstAttribute="leading" secondItem="cF8-bT-xZ3" secondAttribute="trailing" constant="8" id="AlH-Ii-4RM"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="9Cr-2D-kbR" secondAttribute="trailing" constant="20" id="BAx-0c-cId"/>
+                            <constraint firstItem="cF8-bT-xZ3" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="74" id="BRe-nA-3qc"/>
+                            <constraint firstItem="RWv-xj-BAY" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="36" id="C1u-bP-Ifh"/>
+                            <constraint firstItem="G7W-Ao-xui" firstAttribute="top" secondItem="9Cr-2D-kbR" secondAttribute="bottom" constant="9" id="DBu-gz-KYl"/>
                             <constraint firstItem="G7W-Ao-xui" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Dwb-Of-3gr"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="RWv-xj-BAY" secondAttribute="trailing" constant="103" id="FY7-Lv-Wlw"/>
-                            <constraint firstItem="RWv-xj-BAY" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="47" id="H5d-r9-xor"/>
                             <constraint firstItem="G7W-Ao-xui" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Nnn-su-4eb"/>
-                            <constraint firstItem="G7W-Ao-xui" firstAttribute="top" secondItem="RWv-xj-BAY" secondAttribute="bottom" constant="26.5" id="Uau-Iu-ds2"/>
+                            <constraint firstItem="9Cr-2D-kbR" firstAttribute="top" secondItem="RWv-xj-BAY" secondAttribute="bottom" constant="7.5" id="OJg-z6-wS5"/>
+                            <constraint firstItem="9Cr-2D-kbR" firstAttribute="leading" secondItem="cF8-bT-xZ3" secondAttribute="trailing" constant="8" id="Q2L-mY-V0o"/>
+                            <constraint firstItem="9Cr-2D-kbR" firstAttribute="top" secondItem="RWv-xj-BAY" secondAttribute="bottom" constant="7.5" id="dHb-wn-V1e"/>
+                            <constraint firstItem="cF8-bT-xZ3" firstAttribute="top" secondItem="RWv-xj-BAY" secondAttribute="bottom" constant="8.5" id="fHC-Fw-BWc"/>
                             <constraint firstAttribute="bottom" secondItem="G7W-Ao-xui" secondAttribute="bottom" id="lLT-QL-EjW"/>
                             <constraint firstItem="RWv-xj-BAY" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="104" id="qfY-5G-OKG"/>
+                            <constraint firstItem="G7W-Ao-xui" firstAttribute="top" secondItem="cF8-bT-xZ3" secondAttribute="bottom" constant="8" id="rl6-aA-2H2"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="lastUpdateLabel" destination="9Cr-2D-kbR" id="M4V-eW-dMo"/>
                         <outlet property="prefecturesListTableView" destination="G7W-Ao-xui" id="6kN-Nr-fho"/>
                     </connections>
                 </viewController>
@@ -54,8 +73,8 @@
                     <view key="view" contentMode="scaleToFill" id="3bL-Vm-gz6">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="bM7-x3-990"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tMO-DB-hQs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -63,9 +82,4 @@
             <point key="canvasLocation" x="973.91304347826099" y="135.9375"/>
         </scene>
     </scenes>
-    <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-    </resources>
 </document>

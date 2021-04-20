@@ -9,8 +9,8 @@
 import Foundation
 
 protocol PrefecturesView: class {
-//    func setList(prefecturs: [Prefectures])
     func setList()
+    func SetlastUpdate(lastUpdate:String)
 }
 protocol PrefecturesPresenterInput: class {
     var numberOfPrefectures: Int { get }
@@ -23,6 +23,8 @@ class PrefecturesPresenter{
     private weak var view: PrefecturesView!
     private var model: PrefecturesInput
     var storyboard: StoryBoard = StoryBoard()
+    private let format = DateFormatter()
+
     
     var numberOfPrefectures: Int {
         return model.prefectures?.count ?? 0
@@ -33,6 +35,9 @@ class PrefecturesPresenter{
     init(view: PrefecturesView, model: PrefecturesInput = PrefecturesModel()){
         self.view = view
         self.model = model
+        
+        format.dateStyle = .short
+        format.timeStyle = .short
     }
     
 }
@@ -43,6 +48,11 @@ extension PrefecturesPresenter: PrefecturesPresenterInput{
         self.model.GetPregectures(completion: { (prefectures:[Prefectures]?) in
             print("Modelの結果をViewに渡す")
             self.view.setList()
+            
+    
+            
+            let lastUpDate = self.format.string(from: (prefectures?.first!.updated)!)
+            self.view.SetlastUpdate(lastUpdate: lastUpDate)
         })
     }
     

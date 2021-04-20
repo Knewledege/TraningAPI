@@ -27,14 +27,9 @@ class DetailsPresenter{
 extension DetailsPresenter: DetailsPresenterInput{
     
     func GetDetails(id: Int){
-        
         model.GetprefecturesByID(id: id)
-        model.GetPregectures(completion: { prefectures in
-            let details = Details.DetailsToArray(prefectures: (self.model.prefectures?.first!)!)
-            print("details",details)
-            self.view.SetContent(details: details)
-            self.view.SetTitle(name: (self.model.prefectures?.first!.name_ja)!)
-        })
-
+        let details = Details.DetailsToArray(prefectures: self.model.details)
+        self.view.SetContent(details: details)
+        self.view.SetTitle(name: self.model.details.name_ja)
     }
 }

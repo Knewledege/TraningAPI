@@ -11,6 +11,7 @@ import RealmSwift
 
 
 class Prefectures: Object, Codable {
+    @objc dynamic var id:Int = 0
     @objc dynamic var name_ja:String = ""
     @objc dynamic var population:Int = 0
     @objc dynamic var cases:Int = 0
@@ -24,22 +25,24 @@ class Prefectures: Object, Codable {
     @objc dynamic var last_updated:LastUpdated? = LastUpdated()
 
 
-    var updated:Date = Date()
+    @objc dynamic var updated:Date = Date()
     enum CodingKeys: String, CodingKey {
-           case name_ja
-           case population
-           case cases
-           case deaths
-           case pcr
-           case hospitalize
-           case severe
-           case discharge
-           case symptom_confirming
-           case last_updated
+        case id
+        case name_ja
+        case population
+        case cases
+        case deaths
+        case pcr
+        case hospitalize
+        case severe
+        case discharge
+        case symptom_confirming
+        case last_updated
     }
     required init(from decoder: Decoder) throws
     {
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = try container.decode(Int.self, forKey: .id)
         name_ja = try container.decode(String.self, forKey: .name_ja)
         population = try container.decode(Int.self, forKey: .population)
         cases = try container.decode(Int.self, forKey: .cases)
@@ -51,6 +54,10 @@ class Prefectures: Object, Codable {
         symptom_confirming = try container.decode(Int.self, forKey: .symptom_confirming)
         last_updated = try container.decode(LastUpdated.self, forKey: .last_updated)
 //        super.init() なくても大丈夫
+    }
+    override static func primaryKey() -> String?
+    {
+        return "id"
     }
     
     /// Fatal error: Use of unimplemented initializer 'init()' for class 'TraningAPI.Prefectures'
@@ -89,6 +96,7 @@ class Details{
         var details: [[String]] = [[]]
         details = [
             ["人口", prefectures.population.description],
+            ["項目","人数","最終更新日"],
             ["感染者数", prefectures.cases.description, prefectures.last_updated?.cases_date.description ?? "0"],
             ["死者数", prefectures.deaths.description, prefectures.last_updated?.deaths_date.description ?? "0"],
             ["PCR検査数", prefectures.pcr.description, prefectures.last_updated?.pcr_date.description ?? "0"],

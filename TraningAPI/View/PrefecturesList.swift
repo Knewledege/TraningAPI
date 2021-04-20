@@ -20,6 +20,7 @@ class PrefecturesList: UIViewController{
         }
     }
     
+    @IBOutlet weak var lastUpdateLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +33,9 @@ extension PrefecturesList:PrefecturesView{
     func setList() {
         print("Presenterから再描画の指示があったのでVIewを更新する")
         prefecturesListTableView.reloadData()
+    }
+    func SetlastUpdate(lastUpdate:String){
+        lastUpdateLabel.text = lastUpdate
     }
 }
 extension PrefecturesList:UITableViewDelegate{
