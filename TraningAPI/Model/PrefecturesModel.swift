@@ -7,11 +7,11 @@
 //
 
 import Foundation
-//import PromiseKit
+import PromiseKit
 
 
 protocol PrefecturesInput{
-    func GetPregectures(updateComp:Bool, completion: @escaping (Result<[Prefectures], APIError>) -> Void)
+    func GetPregectures(updateComp:Bool) -> Promise<[Prefectures]>
     func GetDetails(id: Int)
     var prefectures: [Prefectures] { get }
     var details: Prefectures! { get }
@@ -30,7 +30,9 @@ class PrefecturesModel{
 
 extension PrefecturesModel:PrefecturesInput{
     ///都道府県情報一覧取得
-    func GetPregectures(updateComp:Bool, completion: @escaping (Result<[Prefectures], APIError>) -> Void){
+    func GetPregectures(updateComp:Bool) -> Promise<[Prefectures]>{
+        
+        let (promise, resolver) = Promise<[Prefectures]>.pending()
         
         //最終更新時間が1分以内か
         var differenceResult:Bool
@@ -52,30 +54,25 @@ extension PrefecturesModel:PrefecturesInput{
             
         //1分以上のため再取得
         if differenceResult {
-            self.api.PrefecturesAPI(callback: { (result,error) in
-                print("結果をコールバックで返す")
-                if let error = error{
-                    print("エラー内容：",error)
-                    completion(.failure(error))
+            firstly {
+                self.api.PrefecturesAPI()
+            }.then{ result in
+                DecodePrefectures.JsonDecode(data: result)
+            }.done{ [weak self] prefectures in
+                self!.prefectures = prefectures
+                if dbResult == nil {
+                    RealmDB.SetPrefecturesOnRealmDB(prefectures: self!.prefectures)
+                }else{
+                    RealmDB.UpdatePrefecturesOnRealmDB(prefectures: self!.prefectures)
                 }
-                if let data = result{
-                    if let decodePrefectures = DecodePrefectures(data: data).prefectures{
-                        self.prefectures = decodePrefectures
-                        if dbResult == nil {
-                            RealmDB.SetPrefecturesOnRealmDB(prefectures: self.prefectures)
-                        }else{
-                            RealmDB.UpdatePrefecturesOnRealmDB(prefectures: self.prefectures)
-                        }
-                        completion(.success(self.prefectures))
-                    }else{
-                        completion(.failure(APIError.decodeError))
-                    }
-                    
-                }
-            })
+                resolver.fulfill(self!.prefectures)
+            }.catch{ error in
+                resolver.reject(error)
+            }
         }else{
-            completion(.success(self.prefectures))
+            resolver.fulfill(self.prefectures)
         }
+        return promise
     }
     private func GetLastUpdate(updated: Date?) -> Bool{
         if let lastUpdate = updated{

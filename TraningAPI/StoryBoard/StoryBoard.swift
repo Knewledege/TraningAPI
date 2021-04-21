@@ -24,7 +24,14 @@ enum Board {
         }
     }
 }
+
 final class StoryBoard{
+    //    MARK: - Screen Transition　画面遷移
+    ///
+    /// - Parameters:
+    ///   - id :Prefecturesテーブルのid
+    ///   - to:遷移先のViewController
+    ///   - from:遷移元のViewController
     static func Perform(id:Int, to:Board, from:UIViewController){
         let nextVC = to.BoardInit(id: id)
         from.present(nextVC, animated: true, completion: nil)

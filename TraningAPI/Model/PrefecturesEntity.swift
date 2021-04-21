@@ -8,6 +8,7 @@
 
 import Foundation
 import RealmSwift
+import PromiseKit
 
 
 class Prefectures: Object, Codable {
@@ -80,14 +81,17 @@ class LastUpdated: Object, Codable{
 
 
 class DecodePrefectures{
-    var prefectures: [Prefectures]?
-    init(data:Data){
+    static func JsonDecode(data:Data) -> Promise<[Prefectures]>{
+        var prefectures: [Prefectures]
+        let (promise, resolver) = Promise<[Prefectures]>.pending()
         do{
-            self.prefectures = try JSONDecoder().decode([Prefectures].self, from: data)
+            prefectures = try JSONDecoder().decode([Prefectures].self, from: data)
+            resolver.fulfill(prefectures)
         }catch{
-//            prefectures = nil
+            resolver.reject(APIError.decodeError)
             print("デコードできませんでした")
         }
+        return promise
     }
 }
 

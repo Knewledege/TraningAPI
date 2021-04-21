@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import PromiseKit
 
 protocol PrefecturesView: class {
     func SetList()
@@ -40,26 +41,23 @@ class PrefecturesPresenter{
         format.dateStyle = .short
         format.timeStyle = .short
     }
-    
 }
 extension PrefecturesPresenter: PrefecturesPresenterInput{
     ///都道府県情報一覧取得
     func GetPrefecturesModel(updateComp: Bool){
         print("Modelに情報を取りにいかせる")
-        self.model.GetPregectures(updateComp: updateComp, completion: { result in
-            switch result {
-            case .success(let prefectures):
-                print("Modelの結果をViewに渡す")
-                self.view.SetList()
-                let lastUpDate = self.format.string(from: prefectures.first!.updated)
-                self.view.SetlastUpdate(lastUpdate: lastUpDate)
-                break
-            case .failure(let error):
-                self.view.Alert(error: error)
-                break
-            }
- 
-        })
+        
+        
+        firstly {
+            self.model.GetPregectures(updateComp: updateComp)
+        }.done{ result in
+            print("Modelの結果をViewに渡す")
+            self.view.SetList()
+            let lastUpDate = self.format.string(from: result.first!.updated)
+            self.view.SetlastUpdate(lastUpdate: lastUpDate)
+        }.catch{ [weak self] error in
+            self!.view.Alert(error: error as! APIError)
+        }
     }
     
     func GetPrefectureName(index:Int) -> String{
