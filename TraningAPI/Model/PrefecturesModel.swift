@@ -7,21 +7,21 @@
 //
 
 import Foundation
-import PromiseKit
-import RealmSwift
+//import PromiseKit
+
 
 protocol PrefecturesInput{
-    func GetPregectures(completion: @escaping ([Prefectures]?) -> Void)
-    func GetprefecturesByID(id: Int)
-    var prefectures: [Prefectures]? { get }
+    func GetPregectures(updateComp:Bool, completion: @escaping (Result<[Prefectures], APIError>) -> Void)
+    func GetDetails(id: Int)
+    var prefectures: [Prefectures] { get }
     var details: Prefectures! { get }
 }
 
 class PrefecturesModel{
-    internal var prefectures: [Prefectures]? = []
+    internal var prefectures: [Prefectures] = []
     internal var details: Prefectures!
     private let api:GithubAPI
-    let realm = try! Realm()
+   
     init(api: GithubAPI = GithubAPI()){
         self.api = api
     }
@@ -30,19 +30,23 @@ class PrefecturesModel{
 
 extension PrefecturesModel:PrefecturesInput{
     ///都道府県情報一覧取得
-    func GetPregectures(completion: @escaping ([Prefectures]?) -> Void){
+    func GetPregectures(updateComp:Bool, completion: @escaping (Result<[Prefectures], APIError>) -> Void){
         
         //最終更新時間が1分以内か
         var differenceResult:Bool
         //データベース全取得
-        let dbResult = GetPrefecturesByRealmDB()
+        let dbResult = RealmDB.GetPrefecturesByRealmDB()
         
-        //データがあるため最終更新時間を判定
-        if let result = dbResult{
-            self.prefectures = result
-            differenceResult = GetLastUpdate(updated: result.first?.updated)
+        if updateComp {
+            //データがあるため最終更新時間を判定
+            if let result = dbResult{
+                self.prefectures = result
+                differenceResult = GetLastUpdate(updated: result.first?.updated)
+            }else{
+            //新規のためAPIを叩く
+                differenceResult = true
+            }
         }else{
-        //新規のためAPIを叩く
             differenceResult = true
         }
             
@@ -52,21 +56,25 @@ extension PrefecturesModel:PrefecturesInput{
                 print("結果をコールバックで返す")
                 if let error = error{
                     print("エラー内容：",error)
+                    completion(.failure(error))
                 }
-                if let result = result{
-                    self.prefectures = DecodePrefectures(data: result).prefectures
-                    completion(self.prefectures)
-                    if self.prefectures != nil {
+                if let data = result{
+                    if let decodePrefectures = DecodePrefectures(data: data).prefectures{
+                        self.prefectures = decodePrefectures
                         if dbResult == nil {
-                            self.SetPrefecturesOnRealmDB(prefectures: self.prefectures!)
+                            RealmDB.SetPrefecturesOnRealmDB(prefectures: self.prefectures)
                         }else{
-                            self.UpdatePrefecturesOnRealmDB(prefectures: self.prefectures!)
+                            RealmDB.UpdatePrefecturesOnRealmDB(prefectures: self.prefectures)
                         }
+                        completion(.success(self.prefectures))
+                    }else{
+                        completion(.failure(APIError.decodeError))
                     }
+                    
                 }
             })
         }else{
-            completion(self.prefectures)
+            completion(.success(self.prefectures))
         }
     }
     private func GetLastUpdate(updated: Date?) -> Bool{
@@ -80,41 +88,8 @@ extension PrefecturesModel:PrefecturesInput{
         }
         return false
     }
-    private func SetPrefecturesOnRealmDB(prefectures:[Prefectures]){
-        
-        do {
-            try self.realm.write {
-                self.realm.add(prefectures)
-            }
-        } catch {
-        }
+    internal func GetDetails(id: Int){
+        self.details = RealmDB.GetprefecturesByID(id: id)
     }
-    private func UpdatePrefecturesOnRealmDB(prefectures:[Prefectures]){
-        do {
-            
-            try self.realm.write {
-             realm.add(prefectures, update: .modified)
-            }
-        } catch {
-        }
-    }
-    private func GetPrefecturesByRealmDB() -> [Prefectures]?{
-        var prefectures:[Prefectures]? = [Prefectures]()
-        //全権取得
-        let results = realm.objects(Prefectures.self)
-//            print(results)
-        let count = results.count
-        if (count != 0) {
-            results.forEach{ prefectures?.append($0)}
-        }else{
-            return nil
-        }
-        return prefectures
-    }
-    func GetprefecturesByID(id: Int){
-        //全権取得
-        if let result = realm.object(ofType: Prefectures.self, forPrimaryKey: id){
-            self.details = result
-        }
-    }
+    
 }

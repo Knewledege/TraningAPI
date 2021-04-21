@@ -28,7 +28,7 @@ class DetailsView: UIViewController {
         CreateDetailsFrame()
         DetailsFrameLayout()
         
-        preseter.GetDetails(id: self.id)
+        preseter.GetPrefecturesInfo(id: self.id)
     }
     
     private func CreateTitleLabel(){

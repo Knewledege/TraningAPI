@@ -9,13 +9,14 @@
 import Foundation
 
 protocol PrefecturesView: class {
-    func setList()
+    func SetList()
     func SetlastUpdate(lastUpdate:String)
+    func Alert(error: APIError)
 }
 protocol PrefecturesPresenterInput: class {
     var numberOfPrefectures: Int { get }
     var storyboard:StoryBoard { get }
-    func GetPrefecturesModel()
+    func GetPrefecturesModel(updateComp: Bool)
     func GetPrefectureName(index:Int) -> String
 }
 
@@ -27,7 +28,7 @@ class PrefecturesPresenter{
 
     
     var numberOfPrefectures: Int {
-        return model.prefectures?.count ?? 0
+        return model.prefectures.count
     }
     
     //初期化 この時点でもうモデル知ってる必要ある？
@@ -43,20 +44,25 @@ class PrefecturesPresenter{
 }
 extension PrefecturesPresenter: PrefecturesPresenterInput{
     ///都道府県情報一覧取得
-    func GetPrefecturesModel(){
+    func GetPrefecturesModel(updateComp: Bool){
         print("Modelに情報を取りにいかせる")
-        self.model.GetPregectures(completion: { (prefectures:[Prefectures]?) in
-            print("Modelの結果をViewに渡す")
-            self.view.setList()
-            
-    
-            
-            let lastUpDate = self.format.string(from: (prefectures?.first!.updated)!)
-            self.view.SetlastUpdate(lastUpdate: lastUpDate)
+        self.model.GetPregectures(updateComp: updateComp, completion: { result in
+            switch result {
+            case .success(let prefectures):
+                print("Modelの結果をViewに渡す")
+                self.view.SetList()
+                let lastUpDate = self.format.string(from: prefectures.first!.updated)
+                self.view.SetlastUpdate(lastUpdate: lastUpDate)
+                break
+            case .failure(let error):
+                self.view.Alert(error: error)
+                break
+            }
+ 
         })
     }
     
     func GetPrefectureName(index:Int) -> String{
-        return self.model.prefectures?[index].name_ja ?? "取得できませんでした"
+        return self.model.prefectures[index].name_ja
     }
 }

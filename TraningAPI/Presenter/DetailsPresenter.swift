@@ -8,7 +8,7 @@
 
 import Foundation
 protocol  DetailsPresenterInput:class{
-    func GetDetails(id: Int)
+    func GetPrefecturesInfo(id: Int)
 }
 protocol  DetailsPresenterOutput:class {
     func SetTitle(name: String)
@@ -26,8 +26,8 @@ class DetailsPresenter{
 }
 extension DetailsPresenter: DetailsPresenterInput{
     
-    func GetDetails(id: Int){
-        model.GetprefecturesByID(id: id)
+    func GetPrefecturesInfo(id: Int){
+        model.GetDetails(id: id)
         let details = Details.DetailsToArray(prefectures: self.model.details)
         self.view.SetContent(details: details)
         self.view.SetTitle(name: self.model.details.name_ja)

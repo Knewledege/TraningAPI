@@ -29,6 +29,7 @@
 		FFD148B026267B1400263EC8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFD148AE26267B1400263EC8 /* LaunchScreen.storyboard */; };
 		FFD148BB26267B1500263EC8 /* TraningAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD148BA26267B1500263EC8 /* TraningAPITests.swift */; };
 		FFD148C626267B1500263EC8 /* TraningAPIUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD148C526267B1500263EC8 /* TraningAPIUITests.swift */; };
+		FFFF3F0E262FC9FB000D42B6 /* RealmDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFF3F0D262FC9FB000D42B6 /* RealmDB.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +84,7 @@
 		FFD148C126267B1500263EC8 /* TraningAPIUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TraningAPIUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFD148C526267B1500263EC8 /* TraningAPIUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraningAPIUITests.swift; sourceTree = "<group>"; };
 		FFD148C726267B1500263EC8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FFFF3F0D262FC9FB000D42B6 /* RealmDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDB.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,6 +214,7 @@
 				FFAC3E4826267D100015DEDB /* View */,
 				FFAC3E4926267D190015DEDB /* Presenter */,
 				FFAC3E4726267D090015DEDB /* Model */,
+				FFFF3F0C262FC9D5000D42B6 /* RealmDB */,
 				FFAC3E4C26268C790015DEDB /* API */,
 				AAEDBB572629743C000FE023 /* StoryBoard */,
 				FFD148A326267B1300263EC8 /* AppDelegate.swift */,
@@ -240,6 +243,14 @@
 				FFD148C726267B1500263EC8 /* Info.plist */,
 			);
 			path = TraningAPIUITests;
+			sourceTree = "<group>";
+		};
+		FFFF3F0C262FC9D5000D42B6 /* RealmDB */ = {
+			isa = PBXGroup;
+			children = (
+				FFFF3F0D262FC9FB000D42B6 /* RealmDB.swift */,
+			);
+			path = RealmDB;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -485,6 +496,7 @@
 				AAEDBB5926297464000FE023 /* StoryBoard.swift in Sources */,
 				FFD148A826267B1300263EC8 /* PrefecturesList.swift in Sources */,
 				FFAC3E542626BA2D0015DEDB /* PrefecturesPresenter.swift in Sources */,
+				FFFF3F0E262FC9FB000D42B6 /* RealmDB.swift in Sources */,
 				FFAC3E4E26268C8E0015DEDB /* GithubAPI.swift in Sources */,
 				FFAC3E522626B5790015DEDB /* PrefecturesEntity.swift in Sources */,
 				FFC6D0B32627F23D007920C5 /* PrefecturesListTableViewCell.swift in Sources */,

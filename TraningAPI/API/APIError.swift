@@ -18,7 +18,7 @@ enum APIError:Error{
     //Jsonが復号できなかったとき
     case decodeError
     
-    var localizedDescription: String {
+    var massegeDescription: String {
         switch self {
         case .networkError:
             return "ネットワーク接続に問題があります"

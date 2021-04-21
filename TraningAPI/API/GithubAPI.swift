@@ -12,7 +12,7 @@ import PromiseKit
 
 
 final class GithubAPI{
-    func PrefecturesAPI(callback: @escaping (Data?, Error?) -> Void) {
+    func PrefecturesAPI(callback: @escaping (Data?, APIError?) -> Void) {
         print("都道府県情報の一覧を取得するAPIを叩く")
         let url = "https://covid19-japan-web-api.vercel.app/api/v1/prefectures"
         

@@ -19,7 +19,7 @@
                                 <rect key="frame" x="0.0" y="151" width="414" height="745"/>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="都道府県一覧" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RWv-xj-BAY">
-                                <rect key="frame" x="104" y="80" width="207" height="33.5"/>
+                                <rect key="frame" x="104" y="80" width="170.5" height="33.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -36,19 +36,26 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2u7-uh-ZdV">
+                                <rect key="frame" x="348" y="80" width="46" height="30"/>
+                                <state key="normal" image="arrow.clockwise" catalog="system"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="2u7-uh-ZdV" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="36" id="46V-R2-nov"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="2u7-uh-ZdV" secondAttribute="trailing" constant="20" id="97I-dt-PDZ"/>
                             <constraint firstItem="9Cr-2D-kbR" firstAttribute="leading" secondItem="cF8-bT-xZ3" secondAttribute="trailing" constant="8" id="AlH-Ii-4RM"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="9Cr-2D-kbR" secondAttribute="trailing" constant="20" id="BAx-0c-cId"/>
                             <constraint firstItem="cF8-bT-xZ3" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="74" id="BRe-nA-3qc"/>
                             <constraint firstItem="RWv-xj-BAY" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="36" id="C1u-bP-Ifh"/>
                             <constraint firstItem="G7W-Ao-xui" firstAttribute="top" secondItem="9Cr-2D-kbR" secondAttribute="bottom" constant="9" id="DBu-gz-KYl"/>
                             <constraint firstItem="G7W-Ao-xui" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Dwb-Of-3gr"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="RWv-xj-BAY" secondAttribute="trailing" constant="103" id="FY7-Lv-Wlw"/>
+                            <constraint firstItem="2u7-uh-ZdV" firstAttribute="leading" secondItem="RWv-xj-BAY" secondAttribute="trailing" constant="73.5" id="K5V-3U-eYo"/>
                             <constraint firstItem="G7W-Ao-xui" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Nnn-su-4eb"/>
                             <constraint firstItem="9Cr-2D-kbR" firstAttribute="top" secondItem="RWv-xj-BAY" secondAttribute="bottom" constant="7.5" id="OJg-z6-wS5"/>
                             <constraint firstItem="9Cr-2D-kbR" firstAttribute="leading" secondItem="cF8-bT-xZ3" secondAttribute="trailing" constant="8" id="Q2L-mY-V0o"/>
+                            <constraint firstItem="9Cr-2D-kbR" firstAttribute="top" secondItem="2u7-uh-ZdV" secondAttribute="bottom" constant="11" id="Rje-Pz-pU1"/>
                             <constraint firstItem="9Cr-2D-kbR" firstAttribute="top" secondItem="RWv-xj-BAY" secondAttribute="bottom" constant="7.5" id="dHb-wn-V1e"/>
                             <constraint firstItem="cF8-bT-xZ3" firstAttribute="top" secondItem="RWv-xj-BAY" secondAttribute="bottom" constant="8.5" id="fHC-Fw-BWc"/>
                             <constraint firstAttribute="bottom" secondItem="G7W-Ao-xui" secondAttribute="bottom" id="lLT-QL-EjW"/>
@@ -60,6 +67,7 @@
                     <connections>
                         <outlet property="lastUpdateLabel" destination="9Cr-2D-kbR" id="M4V-eW-dMo"/>
                         <outlet property="prefecturesListTableView" destination="G7W-Ao-xui" id="6kN-Nr-fho"/>
+                        <outlet property="reloadButton" destination="2u7-uh-ZdV" id="x7q-xD-nHU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -82,4 +90,7 @@
             <point key="canvasLocation" x="973.91304347826099" y="135.9375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="arrow.clockwise" catalog="system" width="115" height="128"/>
+    </resources>
 </document>
