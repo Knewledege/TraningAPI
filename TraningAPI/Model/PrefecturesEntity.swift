@@ -10,7 +10,7 @@ import Foundation
 import RealmSwift
 import PromiseKit
 
-
+//    MARK: - 都道府県情報テーブル
 class Prefectures: Object, Codable {
     @objc dynamic var id:Int = 0
     @objc dynamic var name_ja:String = ""
@@ -22,10 +22,10 @@ class Prefectures: Object, Codable {
     @objc dynamic var severe:Int = 0
     @objc dynamic var discharge:Int = 0
     @objc dynamic var symptom_confirming:Int = 0
-    //リレーショナルにした
+    //更新日のデータがネストだったため、リレーショナルにした
     @objc dynamic var last_updated:LastUpdated? = LastUpdated()
 
-
+    //最終更新日時がAPIのレスポンスに含まれていないためこちらで生成
     @objc dynamic var updated:Date = Date()
     enum CodingKeys: String, CodingKey {
         case id
@@ -40,6 +40,7 @@ class Prefectures: Object, Codable {
         case symptom_confirming
         case last_updated
     }
+    
     required init(from decoder: Decoder) throws
     {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -54,8 +55,10 @@ class Prefectures: Object, Codable {
         discharge = try container.decode(Int.self, forKey: .discharge)
         symptom_confirming = try container.decode(Int.self, forKey: .symptom_confirming)
         last_updated = try container.decode(LastUpdated.self, forKey: .last_updated)
-//        super.init() なくても大丈夫
+        super.init()
     }
+    
+    //テーブルのプライマリキーを指定
     override static func primaryKey() -> String?
     {
         return "id"
@@ -68,7 +71,9 @@ class Prefectures: Object, Codable {
         super.init()
     }
 }
-
+//jsonがネストされていた更新日部分のテーブル
+//    MARK: - 更新日テーブル
+//    jsonがネストされていた更新日部分のテーブル
 class LastUpdated: Object, Codable{
     @objc dynamic var cases_date:Int = 0
     @objc dynamic var deaths_date:Int = 0
@@ -79,7 +84,7 @@ class LastUpdated: Object, Codable{
     @objc dynamic var symptom_confirming_date:Int = 0
 }
 
-
+//    MARK: - Jsonデータを復号
 class DecodePrefectures{
     static func JsonDecode(data:Data) -> Promise<[Prefectures]>{
         var prefectures: [Prefectures]
@@ -95,6 +100,7 @@ class DecodePrefectures{
     }
 }
 
+//    MARK: -PrefecturesをViewで扱いやすいように配列に変換
 class Details{
     static func DetailsToArray(prefectures: Prefectures) -> [[String]]{
         var details: [[String]] = [[]]

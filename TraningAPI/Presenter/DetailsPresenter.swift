@@ -24,8 +24,9 @@ class DetailsPresenter{
         self.model = model
     }
 }
+//    MARK: - Viewからの依頼
 extension DetailsPresenter: DetailsPresenterInput{
-    
+    ///感染者数詳細表示
     func GetPrefecturesInfo(id: Int){
         model.GetDetails(id: id)
         let details = Details.DetailsToArray(prefectures: self.model.details)

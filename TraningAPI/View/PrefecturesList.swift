@@ -61,6 +61,9 @@ extension PrefecturesList:PrefecturesView{
 extension PrefecturesList:UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //遷移とPresenterから情報を渡す
+        /*
+         Viewではあくまでも依頼を流すだけなら、Presenterに書くべき処理？
+         */
         StoryBoard.Perform(id: indexPath.row + 1, to: Board.details, from: self)
     }
 }

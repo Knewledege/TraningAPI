@@ -11,6 +11,7 @@ import RealmSwift
 
 final class RealmDB{
     
+    //本当はDoでエラーキャッチしなくてはいけないはず
     static let realm = try! Realm()
     
     //    MARK: - Create Record　レコードを追加
@@ -34,7 +35,7 @@ final class RealmDB{
             try self.realm.write {
                 self.realm.add(prefectures, update: .modified)
             }
-            } catch {
+        } catch {
         }
     }
     //    MARK: - Get All Record　全レコードを取得

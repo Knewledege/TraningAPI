@@ -7,6 +7,7 @@ target 'TraningAPI' do
   pod "PromiseKit", "~> 6.8"
   pod "Alamofire"
   pod "RealmSwift"
+  pod 'ReachabilitySwift'
 
 
   # Pods for TraningAPI

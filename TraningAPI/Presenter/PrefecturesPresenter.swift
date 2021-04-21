@@ -42,14 +42,15 @@ class PrefecturesPresenter{
         format.timeStyle = .short
     }
 }
+
+ //    MARK: - Viewからの依頼
 extension PrefecturesPresenter: PrefecturesPresenterInput{
-    ///都道府県情報一覧取得
+    ///都道府県情報一覧設定
     func GetPrefecturesModel(updateComp: Bool){
         print("Modelに情報を取りにいかせる")
         
-        
         firstly {
-            self.model.GetPregectures(updateComp: updateComp)
+            self.model.GetPregectures(executionRequest: updateComp)
         }.done{ result in
             print("Modelの結果をViewに渡す")
             self.view.SetList()
@@ -59,7 +60,7 @@ extension PrefecturesPresenter: PrefecturesPresenterInput{
             self!.view.Alert(error: error as! APIError)
         }
     }
-    
+     ///都道府県名設定
     func GetPrefectureName(index:Int) -> String{
         return self.model.prefectures[index].name_ja
     }

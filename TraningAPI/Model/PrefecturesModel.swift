@@ -8,10 +8,11 @@
 
 import Foundation
 import PromiseKit
+import Reachability
 
 
 protocol PrefecturesInput{
-    func GetPregectures(updateComp:Bool) -> Promise<[Prefectures]>
+    func GetPregectures(executionRequest:Bool) -> Promise<[Prefectures]>
     func GetDetails(id: Int)
     var prefectures: [Prefectures] { get }
     var details: Prefectures! { get }
@@ -29,40 +30,59 @@ class PrefecturesModel{
 
 
 extension PrefecturesModel:PrefecturesInput{
-    ///都道府県情報一覧取得
-    func GetPregectures(updateComp:Bool) -> Promise<[Prefectures]>{
-        
+    //    MARK: - 都道府県情報一覧取得
+    /// - Parameters:
+    ///   -executionRequest:  TRUE:DBから取得  FALSE:APIから取得　呼び出し元の依頼
+    func GetPregectures(executionRequest:Bool) -> Promise<[Prefectures]>{
+  
         let (promise, resolver) = Promise<[Prefectures]>.pending()
         
-        //最終更新時間が1分以内か
-        var differenceResult:Bool
-        //データベース全取得
+        //true:APIを叩く, false:DBの値を使う
+        var execution:Bool
+        //DB全取得
         let dbResult = RealmDB.GetPrefecturesByRealmDB()
         
-        if updateComp {
-            //データがあるため最終更新時間を判定
+        if executionRequest {
+            //DBにデータがあるため最終更新時間を判定
             if let result = dbResult{
                 self.prefectures = result
-                differenceResult = GetLastUpdate(updated: result.first?.updated)
+                ///最終更新時間が1分以内ならDBのデータを採用
+                execution = GetLastUpdate(updated: result.first?.updated)
             }else{
-            //新規のためAPIを叩く
-                differenceResult = true
+            //DBのデータがないためAPIを叩く
+                execution = true
             }
         }else{
-            differenceResult = true
+            execution = true
+        }
+        
+        //圏外だったらDBを採用
+        let reachability = try! Reachability()
+        if reachability.connection == .unavailable {
+            //圏外かつDBにデータがない時はエラーを吐かせる
+            if dbResult == nil {
+                resolver.reject(APIError.networkError)
+            }else{
+                execution = false
+            }
         }
             
-        //1分以上のため再取得
-        if differenceResult {
+        //1分以上もしくは再更新の依頼のためAPI取得
+        if execution {
             firstly {
+                //APIを取得
                 self.api.PrefecturesAPI()
             }.then{ result in
+                //デコード
                 DecodePrefectures.JsonDecode(data: result)
             }.done{ [weak self] prefectures in
+                
                 self!.prefectures = prefectures
                 if dbResult == nil {
+                    //データベースに追加
                     RealmDB.SetPrefecturesOnRealmDB(prefectures: self!.prefectures)
                 }else{
+                    //データベースを更新
                     RealmDB.UpdatePrefecturesOnRealmDB(prefectures: self!.prefectures)
                 }
                 resolver.fulfill(self!.prefectures)
@@ -74,8 +94,11 @@ extension PrefecturesModel:PrefecturesInput{
         }
         return promise
     }
+    
+    //    MARK: - 最終更新時間比較
     private func GetLastUpdate(updated: Date?) -> Bool{
         if let lastUpdate = updated{
+            //分単位で比較
             let difference = Calendar.current.dateComponents([.minute], from: lastUpdate, to: Date()).minute ?? 0
                  if difference > 1{
                      return true
@@ -85,6 +108,7 @@ extension PrefecturesModel:PrefecturesInput{
         }
         return false
     }
+    //    MARK: - 該当レコードをデータベースより取得
     internal func GetDetails(id: Int){
         self.details = RealmDB.GetprefecturesByID(id: id)
     }
