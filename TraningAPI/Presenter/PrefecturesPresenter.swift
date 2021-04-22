@@ -14,7 +14,7 @@ protocol PrefecturesView: class {
     func setlastUpdate(lastUpdate:String)
     func alert(error: APIError)
 }
-protocol PrefecturesPresenterInput: class {
+protocol PrefecturesPresenterInput {
     var numberOfPrefectures: Int { get }
     var storyboard:StoryBoard { get }
     func getPrefecturesModel(updateComp: Bool)
@@ -22,7 +22,7 @@ protocol PrefecturesPresenterInput: class {
 }
 
 class PrefecturesPresenter{
-    private weak var view: PrefecturesView!
+    private weak var delegate: PrefecturesView!
     private var model: PrefecturesInput
     var storyboard: StoryBoard = StoryBoard()
     private let format = DateFormatter()
@@ -34,8 +34,8 @@ class PrefecturesPresenter{
     
     //初期化 この時点でもうモデル知ってる必要ある？
     //それともViewから指定すればいい？？
-    init(view: PrefecturesView, model: PrefecturesInput = PrefecturesModel()){
-        self.view = view
+    init(delegate: PrefecturesView, model: PrefecturesInput = PrefecturesModel()){
+        self.delegate = delegate
         self.model = model
         
         format.dateStyle = .short
@@ -53,14 +53,14 @@ extension PrefecturesPresenter: PrefecturesPresenterInput{
             self.model.getPregectures(executionRequest: updateComp)
         }.done{ result in
             print("Modelの結果をViewに渡す")
-            self.view.setList()
+            self.delegate.setList()
             if let date = result.first?.updated{
                 let lastUpDate = self.format.string(from: date)
-                self.view.setlastUpdate(lastUpdate: lastUpDate)
+                self.delegate.setlastUpdate(lastUpdate: lastUpDate)
             }
         }.catch{ error in
             if let apiError:APIError = error as? APIError{
-                self.view.alert(error: apiError)
+                self.delegate.alert(error: apiError)
             }
             
         }

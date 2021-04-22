@@ -7,7 +7,7 @@
 //
 
 import Foundation
-protocol  DetailsPresenterInput:class{
+protocol  DetailsPresenterInput{
     func getPrefecturesInfo(id: Int)
 }
 protocol  DetailsPresenterOutput:class {
@@ -17,10 +17,10 @@ protocol  DetailsPresenterOutput:class {
 
 class DetailsPresenter{
     
-    private weak var view: DetailsPresenterOutput!
+    private weak var delegate: DetailsPresenterOutput!
     private var model: PrefecturesInput
-    init(view: DetailsPresenterOutput, model: PrefecturesInput = PrefecturesModel()) {
-        self.view = view
+    init(delegate: DetailsPresenterOutput, model: PrefecturesInput = PrefecturesModel()) {
+        self.delegate = delegate
         self.model = model
     }
 }
@@ -30,7 +30,7 @@ extension DetailsPresenter: DetailsPresenterInput{
     func getPrefecturesInfo(id: Int){
         model.getDetails(id: id)
         let details = Details.detailsToArray(prefectures: self.model.details)
-        self.view.setContent(details: details)
-        self.view.setTitle(name: self.model.details.name_ja)
+        self.delegate.setContent(details: details)
+        self.delegate.setTitle(name: self.model.details.name_ja)
     }
 }

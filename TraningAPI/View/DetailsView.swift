@@ -23,7 +23,7 @@ class DetailsView: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        preseter = DetailsPresenter(view: self)
+        preseter = DetailsPresenter(delegate: self)
         
         self.view.backgroundColor = .white
         

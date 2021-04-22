@@ -30,7 +30,7 @@ class PrefecturesList: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter = PrefecturesPresenter(view: self)
+        presenter = PrefecturesPresenter(delegate: self)
         print("Presenterに情報取得の指示")
         presenter.getPrefecturesModel(updateComp: true)
     }

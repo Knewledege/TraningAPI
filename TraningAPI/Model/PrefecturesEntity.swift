@@ -108,30 +108,30 @@ class Details{
     static func detailsToArray(prefectures: Prefectures) -> [[String]]{
         var details: [[String]] = [[]]
         details = [
-            [ConstantProperty.population, prefectures.population.description],
-            [ConstantProperty.itemName,ConstantProperty.persons,ConstantProperty.lastUpdated],
-            [ConstantProperty.cases, prefectures.cases.description, prefectures.last_updated?.cases_date.description ?? "0"],
-            [ConstantProperty.deaths, prefectures.deaths.description, prefectures.last_updated?.deaths_date.description ?? "0"],
-            [ConstantProperty.pcr, prefectures.pcr.description, prefectures.last_updated?.pcr_date.description ?? "0"],
-            [ConstantProperty.hospitalize, prefectures.hospitalize.description, prefectures.last_updated?.hospitalize_date.description ?? "0"],
-            [ConstantProperty.severe, prefectures.severe.description, prefectures.last_updated?.severe_date.description ?? "0"],
-            [ConstantProperty.discharge, prefectures.discharge.description, prefectures.last_updated?.discharge_date.description ?? "0"],
-            [ConstantProperty.symptom_confirming, prefectures.symptom_confirming.description, prefectures.last_updated?.symptom_confirming_date.description ?? "0"] ]
+            [DetailsConst.POPULATION, prefectures.population.description],
+            [DetailsConst.ITEM_NAME,DetailsConst.PERSONS,DetailsConst.LAST_UPDATE],
+            [DetailsConst.CASES, prefectures.cases.description, prefectures.last_updated?.cases_date.description ?? "0"],
+            [DetailsConst.DEATHS, prefectures.deaths.description, prefectures.last_updated?.deaths_date.description ?? "0"],
+            [DetailsConst.PCR, prefectures.pcr.description, prefectures.last_updated?.pcr_date.description ?? "0"],
+            [DetailsConst.HOSPITALIZE, prefectures.hospitalize.description, prefectures.last_updated?.hospitalize_date.description ?? "0"],
+            [DetailsConst.SEVERE, prefectures.severe.description, prefectures.last_updated?.severe_date.description ?? "0"],
+            [DetailsConst.DISCHARGE, prefectures.discharge.description, prefectures.last_updated?.discharge_date.description ?? "0"],
+            [DetailsConst.SYMPTOM_CONFIRMING, prefectures.symptom_confirming.description, prefectures.last_updated?.symptom_confirming_date.description ?? "0"] ]
         return details
     }
 }
 
 //    MARK: -定数クラス
-final class ConstantProperty{
-    public static let itemName = "項目"
-    public static let persons = "人数"
-    public static let lastUpdated = "最終更新日"
-    public static let population = "人口"
-    public static let cases = "感染者数"
-    public static let deaths = "死者数"
-    public static let pcr = "PCR検査数"
-    public static let hospitalize = "入院者数"
-    public static let severe = "重症者数"
-    public static let discharge = "退院者数"
-    public static let symptom_confirming = "自覚症状者数"
+final class DetailsConst{
+    public static let ITEM_NAME = "項目"
+    public static let PERSONS = "人数"
+    public static let LAST_UPDATE = "最終更新日"
+    public static let POPULATION = "人口"
+    public static let CASES = "感染者数"
+    public static let DEATHS = "死者数"
+    public static let PCR = "PCR検査数"
+    public static let HOSPITALIZE = "入院者数"
+    public static let SEVERE = "重症者数"
+    public static let DISCHARGE = "退院者数"
+    public static let SYMPTOM_CONFIRMING = "自覚症状者数"
 }
