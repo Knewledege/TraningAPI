@@ -27,18 +27,18 @@ class DetailsView: UIViewController {
         
         self.view.backgroundColor = .white
         
-        CreateTitleLabel()
-        TitleLabelLyout()
+        createTitleLabel()
+        titleLabelLyout()
         
-        CreateDetailsFrame()
-        DetailsFrameLayout()
+        createDetailsFrame()
+        detailsFrameLayout()
         
         //データベースより該当レコード情報取得
-        preseter.GetPrefecturesInfo(id: self.id)
+        preseter.getPrefecturesInfo(id: self.id)
     }
     
     // MARK: - 都道府県名表示ラベル作成
-    private func CreateTitleLabel(){
+    private func createTitleLabel(){
         titleLabel = UILabel(frame: .zero)
         titleLabel.font = UIFont.systemFont(ofSize: 26, weight: .bold)
         titleLabel.backgroundColor = .orange
@@ -47,7 +47,7 @@ class DetailsView: UIViewController {
     }
     
     // MARK: - 都道府県名表示ラベルレイアウト指定
-    private func TitleLabelLyout(){
+    private func titleLabelLyout(){
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 100).isActive = true
         titleLabel.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.8).isActive = true
@@ -56,19 +56,19 @@ class DetailsView: UIViewController {
     }
     
     // MARK: - 各情報格納ビュー作成
-    private func CreateDetailsFrame(){
-        detailsFrame = CreateStackView(axis:.vertical, aligment: .fill,  distribution: .equalSpacing, spacing: 10)
+    private func createDetailsFrame(){
+        detailsFrame = createStackView(axis:.vertical, aligment: .fill,  distribution: .equalSpacing, spacing: 10)
         self.view.addSubview(detailsFrame)
     }
     // MARK: - 各情報格納ビューレイアウト指定
-    private func DetailsFrameLayout(){
+    private func detailsFrameLayout(){
         detailsFrame.translatesAutoresizingMaskIntoConstraints = false
         detailsFrame.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor, constant: 50).isActive = true
         detailsFrame.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.8).isActive = true
         detailsFrame.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
     }
     // MARK: - UIstackView作成メソッド
-    private func CreateStackView(axis:NSLayoutConstraint.Axis, aligment:UIStackView.Alignment,  distribution:UIStackView.Distribution, spacing:CGFloat) -> UIStackView {
+    private func createStackView(axis:NSLayoutConstraint.Axis, aligment:UIStackView.Alignment,  distribution:UIStackView.Distribution, spacing:CGFloat) -> UIStackView {
         let stackView = UIStackView(frame: .zero)
         stackView.axis = axis
         stackView.alignment = aligment
@@ -93,7 +93,7 @@ extension DetailsView: DetailsPresenterOutput{
     ///
     /// - Parameters:
     ///   - name:都道府県名
-    func SetTitle(name: String){
+    func setTitle(name: String){
         titleLabel.text = name
     }
     
@@ -101,10 +101,10 @@ extension DetailsView: DetailsPresenterOutput{
     ///
     /// - Parameters:
     ///   - details:Detailsクラス
-    func SetContent(details: [[String]]){
+    func setContent(details: [[String]]){
         details.forEach{ values in
             //各行作成
-            let content = CreateStackView(axis: .horizontal, aligment: .fill, distribution: .fillEqually, spacing: 0)
+            let content = createStackView(axis: .horizontal, aligment: .fill, distribution: .fillEqually, spacing: 0)
             //各列作成
             values.forEach{ value in
                 let label = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 100))

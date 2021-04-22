@@ -23,7 +23,7 @@ class PrefecturesList: UIViewController{
     @IBOutlet weak var lastUpdateLabel: UILabel!
     @IBOutlet weak var reloadButton: UIButton!{
         didSet{
-            reloadButton.addTarget(self,action: #selector(ReloadTableView), for: .touchUpInside)
+            reloadButton.addTarget(self,action: #selector(reloadTableView), for: .touchUpInside)
             reloadButton.isEnabled = false
         }
     }
@@ -32,30 +32,30 @@ class PrefecturesList: UIViewController{
         super.viewDidLoad()
         presenter = PrefecturesPresenter(view: self)
         print("Presenterに情報取得の指示")
-        presenter.GetPrefecturesModel(updateComp: true)
+        presenter.getPrefecturesModel(updateComp: true)
     }
     
-    @objc func ReloadTableView(){
-        presenter.GetPrefecturesModel(updateComp: false)
+    @objc func reloadTableView(){
+        presenter.getPrefecturesModel(updateComp: false)
     }
 }
 extension PrefecturesList:PrefecturesView{
-    func SetList() {
+    func setList() {
         print("Presenterから再描画の指示があったのでVIewを更新する")
         prefecturesListTableView.reloadData()
     }
-    func SetlastUpdate(lastUpdate:String){
+    func setlastUpdate(lastUpdate:String){
         lastUpdateLabel.text = lastUpdate
         reloadButton.isEnabled = true
     }
-    func Alert(error: APIError){
-        let Alert = UIAlertController(title: "エラーが発生しました", message: error.massegeDescription, preferredStyle: .alert)
+    func alert(error: APIError){
+        let alert = UIAlertController(title: "エラーが発生しました", message: error.massegeDescription, preferredStyle: .alert)
         let okAction: UIAlertAction = UIAlertAction(title: "OK", style: .default, handler:{
             (action: UIAlertAction) -> Void in
-            self.presenter.GetPrefecturesModel(updateComp: false)
+            self.presenter.getPrefecturesModel(updateComp: false)
         })
-        Alert.addAction(okAction)
-        self.present(Alert, animated: true, completion: nil)
+        alert.addAction(okAction)
+        self.present(alert, animated: true, completion: nil)
     }
 }
 extension PrefecturesList:UITableViewDelegate{
@@ -64,7 +64,7 @@ extension PrefecturesList:UITableViewDelegate{
         /*
          Viewではあくまでも依頼を流すだけなら、Presenterに書くべき処理？
          */
-        StoryBoard.Perform(id: indexPath.row + 1, to: Board.details, from: self)
+        StoryBoard.perform(id: indexPath.row + 1, to: Board.details, from: self)
     }
 }
 extension PrefecturesList:UITableViewDataSource{
@@ -76,7 +76,7 @@ extension PrefecturesList:UITableViewDataSource{
         guard let cell = tableView.dequeueReusableCell(withIdentifier: PrefecturesListTableViewCell.cellIdentifer, for: indexPath) as? PrefecturesListTableViewCell else{
             return UITableViewCell()
         }
-        cell.NameLabelConfigure(name: presenter.GetPrefectureName(index: indexPath.row))
+        cell.nameLabelConfigure(name: presenter.getPrefectureName(index: indexPath.row))
         return cell
     }
     

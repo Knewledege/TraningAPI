@@ -8,11 +8,11 @@
 
 import Foundation
 protocol  DetailsPresenterInput:class{
-    func GetPrefecturesInfo(id: Int)
+    func getPrefecturesInfo(id: Int)
 }
 protocol  DetailsPresenterOutput:class {
-    func SetTitle(name: String)
-    func SetContent(details: [[String]])
+    func setTitle(name: String)
+    func setContent(details: [[String]])
 }
 
 class DetailsPresenter{
@@ -27,10 +27,10 @@ class DetailsPresenter{
 //    MARK: - Viewからの依頼
 extension DetailsPresenter: DetailsPresenterInput{
     ///感染者数詳細表示
-    func GetPrefecturesInfo(id: Int){
-        model.GetDetails(id: id)
-        let details = Details.DetailsToArray(prefectures: self.model.details)
-        self.view.SetContent(details: details)
-        self.view.SetTitle(name: self.model.details.name_ja)
+    func getPrefecturesInfo(id: Int){
+        model.getDetails(id: id)
+        let details = Details.detailsToArray(prefectures: self.model.details)
+        self.view.setContent(details: details)
+        self.view.setTitle(name: self.model.details.name_ja)
     }
 }

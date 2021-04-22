@@ -30,7 +30,7 @@ class PrefecturesListTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func NameLabelConfigure(name: String){
+    func nameLabelConfigure(name: String){
         nameLabel.text = name
     }
     

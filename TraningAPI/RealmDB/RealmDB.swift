@@ -18,7 +18,7 @@ final class RealmDB{
     ///
     /// - Parameters:
     ///   - prefectures:Prefecturesクラスの配列
-    static func SetPrefecturesOnRealmDB(prefectures:[Prefectures]){
+    static func setPrefecturesOnRealmDB(prefectures:[Prefectures]){
         do {
             try self.realm?.write {
                 self.realm?.add(prefectures)
@@ -30,7 +30,7 @@ final class RealmDB{
     ///
     /// - Parameters:
     ///   - prefectures:Prefecturesクラスの配列
-    static func UpdatePrefecturesOnRealmDB(prefectures:[Prefectures]){
+    static func updatePrefecturesOnRealmDB(prefectures:[Prefectures]){
         do {
             try self.realm?.write {
                 self.realm?.add(prefectures, update: .modified)
@@ -41,7 +41,7 @@ final class RealmDB{
     //    MARK: - Get All Record　全レコードを取得
     ///
     /// - Returns:Prefecturesクラスの配列
-    static func GetPrefecturesByRealmDB() -> [Prefectures]?{
+    static func getPrefecturesByRealmDB() -> [Prefectures]?{
         var prefectures:[Prefectures]? = [Prefectures]()
         //全権取得
         if let results = self.realm?.objects(Prefectures.self){
@@ -59,7 +59,7 @@ final class RealmDB{
     /// - Parameters:
     ///   - id:Prefecturesテーブルのプライマリキー
     /// - Returns:Prefecturesクラスの配列
-    static func GetprefecturesByID(id: Int) -> Prefectures?{
+    static func getprefecturesByID(id: Int) -> Prefectures?{
         //プライマリキーで取得
         if let result = self.realm?.object(ofType: Prefectures.self, forPrimaryKey: id){
             return result

@@ -12,7 +12,7 @@ enum Board {
     case prefecturesList
     case details
     
-    func BoardInit(id: Int) -> UIViewController{
+    func boardInit(id: Int) -> UIViewController{
         switch self {
         case .prefecturesList:
             let nextVC = PrefecturesList()
@@ -32,8 +32,8 @@ final class StoryBoard{
     ///   - id :Prefecturesテーブルのid
     ///   - to:遷移先のViewController
     ///   - from:遷移元のViewController
-    static func Perform(id:Int, to:Board, from:UIViewController){
-        let nextVC = to.BoardInit(id: id)
+    static func perform(id:Int, to:Board, from:UIViewController){
+        let nextVC = to.boardInit(id: id)
         from.present(nextVC, animated: true, completion: nil)
     }
 }

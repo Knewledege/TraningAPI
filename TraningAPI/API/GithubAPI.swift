@@ -15,7 +15,7 @@ final class GithubAPI{
     ///
     /// - Parameters:
     ///   - callback:クロージャー
-    func PrefecturesAPI()  -> Promise<Data> {
+    func prefecturesAPI()  -> Promise<Data> {
         let (promise, resolver) = Promise<Data>.pending()
         print("都道府県情報の一覧を取得するAPIを叩く")
         let url = "https://covid19-japan-web-api.vercel.app/api/v1/prefectures"

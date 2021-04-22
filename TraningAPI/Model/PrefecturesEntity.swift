@@ -86,12 +86,12 @@ class LastUpdated: Object, Codable{
 
 //    MARK: - Jsonデータを復号
 class DecodePrefectures{
-    static func JsonDecode(data:Data) -> Promise<[Prefectures]>{
-        var prefectures: [Prefectures]
+    static func jsonDecode(data:Data) -> Promise<[Prefectures]>{
+        var result: [Prefectures]
         let (promise, resolver) = Promise<[Prefectures]>.pending()
         do{
-            prefectures = try JSONDecoder().decode([Prefectures].self, from: data)
-            resolver.fulfill(prefectures)
+            result = try JSONDecoder().decode([Prefectures].self, from: data)
+            resolver.fulfill(result)
         }catch{
             resolver.reject(APIError.decodeError)
             print("デコードできませんでした")
@@ -105,24 +105,24 @@ class DecodePrefectures{
 
 //    MARK: -PrefecturesをViewで扱いやすいように配列に変換
 class Details{
-    static func DetailsToArray(prefectures: Prefectures) -> [[String]]{
+    static func detailsToArray(prefectures: Prefectures) -> [[String]]{
         var details: [[String]] = [[]]
         details = [
-            [constantProperty.population, prefectures.population.description],
-            [constantProperty.itemName,constantProperty.persons,constantProperty.lastUpdated],
-            [constantProperty.cases, prefectures.cases.description, prefectures.last_updated?.cases_date.description ?? "0"],
-            [constantProperty.deaths, prefectures.deaths.description, prefectures.last_updated?.deaths_date.description ?? "0"],
-            [constantProperty.pcr, prefectures.pcr.description, prefectures.last_updated?.pcr_date.description ?? "0"],
-            [constantProperty.hospitalize, prefectures.hospitalize.description, prefectures.last_updated?.hospitalize_date.description ?? "0"],
-            [constantProperty.severe, prefectures.severe.description, prefectures.last_updated?.severe_date.description ?? "0"],
-            [constantProperty.discharge, prefectures.discharge.description, prefectures.last_updated?.discharge_date.description ?? "0"],
-            [constantProperty.symptom_confirming, prefectures.symptom_confirming.description, prefectures.last_updated?.symptom_confirming_date.description ?? "0"] ]
+            [ConstantProperty.population, prefectures.population.description],
+            [ConstantProperty.itemName,ConstantProperty.persons,ConstantProperty.lastUpdated],
+            [ConstantProperty.cases, prefectures.cases.description, prefectures.last_updated?.cases_date.description ?? "0"],
+            [ConstantProperty.deaths, prefectures.deaths.description, prefectures.last_updated?.deaths_date.description ?? "0"],
+            [ConstantProperty.pcr, prefectures.pcr.description, prefectures.last_updated?.pcr_date.description ?? "0"],
+            [ConstantProperty.hospitalize, prefectures.hospitalize.description, prefectures.last_updated?.hospitalize_date.description ?? "0"],
+            [ConstantProperty.severe, prefectures.severe.description, prefectures.last_updated?.severe_date.description ?? "0"],
+            [ConstantProperty.discharge, prefectures.discharge.description, prefectures.last_updated?.discharge_date.description ?? "0"],
+            [ConstantProperty.symptom_confirming, prefectures.symptom_confirming.description, prefectures.last_updated?.symptom_confirming_date.description ?? "0"] ]
         return details
     }
 }
 
 //    MARK: -定数クラス
-final class constantProperty{
+final class ConstantProperty{
     public static let itemName = "項目"
     public static let persons = "人数"
     public static let lastUpdated = "最終更新日"

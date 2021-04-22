@@ -10,15 +10,15 @@ import Foundation
 import PromiseKit
 
 protocol PrefecturesView: class {
-    func SetList()
-    func SetlastUpdate(lastUpdate:String)
-    func Alert(error: APIError)
+    func setList()
+    func setlastUpdate(lastUpdate:String)
+    func alert(error: APIError)
 }
 protocol PrefecturesPresenterInput: class {
     var numberOfPrefectures: Int { get }
     var storyboard:StoryBoard { get }
-    func GetPrefecturesModel(updateComp: Bool)
-    func GetPrefectureName(index:Int) -> String
+    func getPrefecturesModel(updateComp: Bool)
+    func getPrefectureName(index:Int) -> String
 }
 
 class PrefecturesPresenter{
@@ -46,27 +46,27 @@ class PrefecturesPresenter{
  //    MARK: - Viewからの依頼
 extension PrefecturesPresenter: PrefecturesPresenterInput{
     ///都道府県情報一覧設定
-    func GetPrefecturesModel(updateComp: Bool){
+    func getPrefecturesModel(updateComp: Bool){
         print("Modelに情報を取りにいかせる")
         
         firstly {
-            self.model.GetPregectures(executionRequest: updateComp)
+            self.model.getPregectures(executionRequest: updateComp)
         }.done{ result in
             print("Modelの結果をViewに渡す")
-            self.view.SetList()
+            self.view.setList()
             if let date = result.first?.updated{
                 let lastUpDate = self.format.string(from: date)
-                self.view.SetlastUpdate(lastUpdate: lastUpDate)
+                self.view.setlastUpdate(lastUpdate: lastUpDate)
             }
         }.catch{ error in
             if let apiError:APIError = error as? APIError{
-                self.view.Alert(error: apiError)
+                self.view.alert(error: apiError)
             }
             
         }
     }
      ///都道府県名設定
-    func GetPrefectureName(index:Int) -> String{
+    func getPrefectureName(index:Int) -> String{
         return self.model.prefectures[index].name_ja
     }
 }
