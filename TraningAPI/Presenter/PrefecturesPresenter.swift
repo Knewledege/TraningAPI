@@ -54,10 +54,15 @@ extension PrefecturesPresenter: PrefecturesPresenterInput{
         }.done{ result in
             print("Modelの結果をViewに渡す")
             self.view.SetList()
-            let lastUpDate = self.format.string(from: result.first!.updated)
-            self.view.SetlastUpdate(lastUpdate: lastUpDate)
-        }.catch{ [weak self] error in
-            self!.view.Alert(error: error as! APIError)
+            if let date = result.first?.updated{
+                let lastUpDate = self.format.string(from: date)
+                self.view.SetlastUpdate(lastUpdate: lastUpDate)
+            }
+        }.catch{ error in
+            if let apiError:APIError = error as? APIError{
+                self.view.Alert(error: apiError)
+            }
+            
         }
     }
      ///都道府県名設定

@@ -12,7 +12,7 @@ import RealmSwift
 final class RealmDB{
     
     //本当はDoでエラーキャッチしなくてはいけないはず
-    static let realm = try! Realm()
+    static let realm = try? Realm()
     
     //    MARK: - Create Record　レコードを追加
     ///
@@ -20,8 +20,8 @@ final class RealmDB{
     ///   - prefectures:Prefecturesクラスの配列
     static func SetPrefecturesOnRealmDB(prefectures:[Prefectures]){
         do {
-            try self.realm.write {
-                self.realm.add(prefectures)
+            try self.realm?.write {
+                self.realm?.add(prefectures)
             }
         } catch {
         }
@@ -32,8 +32,8 @@ final class RealmDB{
     ///   - prefectures:Prefecturesクラスの配列
     static func UpdatePrefecturesOnRealmDB(prefectures:[Prefectures]){
         do {
-            try self.realm.write {
-                self.realm.add(prefectures, update: .modified)
+            try self.realm?.write {
+                self.realm?.add(prefectures, update: .modified)
             }
         } catch {
         }
@@ -44,12 +44,13 @@ final class RealmDB{
     static func GetPrefecturesByRealmDB() -> [Prefectures]?{
         var prefectures:[Prefectures]? = [Prefectures]()
         //全権取得
-        let results = self.realm.objects(Prefectures.self)
-        let count = results.count
-        if (count != 0) {
-            results.forEach{ prefectures?.append($0)}
-        }else{
-            return nil
+        if let results = self.realm?.objects(Prefectures.self){
+            let count = results.count
+            if (count != 0) {
+                results.forEach{ prefectures?.append($0)}
+            }else{
+                return nil
+            }
         }
         return prefectures
     }
@@ -60,7 +61,7 @@ final class RealmDB{
     /// - Returns:Prefecturesクラスの配列
     static func GetprefecturesByID(id: Int) -> Prefectures?{
         //プライマリキーで取得
-        if let result = self.realm.object(ofType: Prefectures.self, forPrimaryKey: id){
+        if let result = self.realm?.object(ofType: Prefectures.self, forPrimaryKey: id){
             return result
         }
         return nil

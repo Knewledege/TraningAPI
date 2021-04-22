@@ -51,7 +51,7 @@ extension PrefecturesList:PrefecturesView{
     func Alert(error: APIError){
         let Alert = UIAlertController(title: "エラーが発生しました", message: error.massegeDescription, preferredStyle: .alert)
         let okAction: UIAlertAction = UIAlertAction(title: "OK", style: .default, handler:{
-            (action: UIAlertAction!) -> Void in
+            (action: UIAlertAction) -> Void in
             self.presenter.GetPrefecturesModel(updateComp: false)
         })
         Alert.addAction(okAction)
@@ -73,7 +73,9 @@ extension PrefecturesList:UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: PrefecturesListTableViewCell.cellIdentifer, for: indexPath) as! PrefecturesListTableViewCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: PrefecturesListTableViewCell.cellIdentifer, for: indexPath) as? PrefecturesListTableViewCell else{
+            return UITableViewCell()
+        }
         cell.NameLabelConfigure(name: presenter.GetPrefectureName(index: indexPath.row))
         return cell
     }

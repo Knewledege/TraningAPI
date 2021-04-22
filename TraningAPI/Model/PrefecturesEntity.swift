@@ -98,6 +98,9 @@ class DecodePrefectures{
         }
         return promise
     }
+    deinit {
+        print("decodeprefectures deinit")
+    }
 }
 
 //    MARK: -PrefecturesをViewで扱いやすいように配列に変換

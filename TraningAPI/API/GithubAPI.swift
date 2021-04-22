@@ -43,4 +43,7 @@ final class GithubAPI{
         })
         return promise
     }
+    deinit {
+        print("api deinit")
+    }
 }

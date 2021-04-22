@@ -21,10 +21,13 @@ protocol PrefecturesInput{
 class PrefecturesModel{
     internal var prefectures: [Prefectures] = []
     internal var details: Prefectures!
-    private let api:GithubAPI
+    private let api:GithubAPI!
    
     init(api: GithubAPI = GithubAPI()){
         self.api = api
+    }
+    deinit {
+        print("model deinit")
     }
 }
 
@@ -57,14 +60,18 @@ extension PrefecturesModel:PrefecturesInput{
         }
         
         //圏外だったらDBを採用
-        let reachability = try! Reachability()
-        if reachability.connection == .unavailable {
-            //圏外かつDBにデータがない時はエラーを吐かせる
-            if dbResult == nil {
-                resolver.reject(APIError.networkError)
-            }else{
-                execution = false
+        do{
+            let reachability = try Reachability()
+            if reachability.connection == .unavailable {
+                //圏外かつDBにデータがない時はエラーを吐かせる
+                if dbResult == nil {
+                    resolver.reject(APIError.networkError)
+                }else{
+                    execution = false
+                }
             }
+        }catch{
+            print("Reachabilityのインスタンス生成に失敗しました")
         }
             
         //1分以上もしくは再更新の依頼のためAPI取得
@@ -73,19 +80,19 @@ extension PrefecturesModel:PrefecturesInput{
                 //APIを取得
                 self.api.PrefecturesAPI()
             }.then{ result in
-                //デコード
+                //APIのレスポンスをデコード
                 DecodePrefectures.JsonDecode(data: result)
-            }.done{ [weak self] prefectures in
+            }.done{ prefectures in//staticメソッドだから強参照ではないと考え [weak self]を除外　[weak self]に関してはもう少し理解が必要
                 
-                self!.prefectures = prefectures
+                self.prefectures = prefectures
                 if dbResult == nil {
                     //データベースに追加
-                    RealmDB.SetPrefecturesOnRealmDB(prefectures: self!.prefectures)
+                    RealmDB.SetPrefecturesOnRealmDB(prefectures: self.prefectures)
                 }else{
                     //データベースを更新
-                    RealmDB.UpdatePrefecturesOnRealmDB(prefectures: self!.prefectures)
+                    RealmDB.UpdatePrefecturesOnRealmDB(prefectures: self.prefectures)
                 }
-                resolver.fulfill(self!.prefectures)
+                resolver.fulfill(self.prefectures)
             }.catch{ error in
                 resolver.reject(error)
             }
