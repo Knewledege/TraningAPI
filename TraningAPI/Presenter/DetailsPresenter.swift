@@ -19,7 +19,7 @@ class DetailsPresenter{
     
     private weak var delegate: DetailsPresenterOutput!
     private var model: PrefecturesInput
-    init(delegate: DetailsPresenterOutput, model: PrefecturesInput = PrefecturesModel()) {
+    init(delegate: DetailsPresenterOutput, model: PrefecturesInput = PrefecturesUseCase()) {
         self.delegate = delegate
         self.model = model
     }

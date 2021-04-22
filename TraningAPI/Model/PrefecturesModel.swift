@@ -18,13 +18,22 @@ protocol PrefecturesInput{
     var details: Prefectures! { get }
 }
 
-class PrefecturesModel{
+class PrefecturesUseCase{
     internal var prefectures: [Prefectures] = []
     internal var details: Prefectures!
     private let api:GithubAPI!
+    private let realmDB:RealmDB!
+    private let reachability:Reachability!
    
-    init(api: GithubAPI = GithubAPI()){
+    init(api: GithubAPI = GithubAPI(), localDB: RealmDB = RealmDB()){
         self.api = api
+        self.realmDB = localDB
+        
+         do{
+            reachability = try Reachability()
+         }catch{
+            reachability = nil
+         }
     }
     deinit {
         print("model deinit")
@@ -32,7 +41,7 @@ class PrefecturesModel{
 }
 
 
-extension PrefecturesModel:PrefecturesInput{
+extension PrefecturesUseCase:PrefecturesInput{
     //    MARK: - 都道府県情報一覧取得
     /// - Parameters:
     ///   -executionRequest:  TRUE:DBから取得  FALSE:APIから取得　呼び出し元の依頼
@@ -40,64 +49,46 @@ extension PrefecturesModel:PrefecturesInput{
   
         let (promise, resolver) = Promise<[Prefectures]>.pending()
         
-        //true:APIを叩く, false:DBの値を使う
-        var execution:Bool
         //DB全取得
-        let dbResult = RealmDB.getPrefecturesByRealmDB()
+        let dbResult = realmDB.getPrefecturesByRealmDB()
         
-        if executionRequest {
-            //DBにデータがあるため最終更新時間を判定
-            if let result = dbResult{
-                self.prefectures = result
-                ///最終更新時間が1分以内ならDBのデータを採用
-                execution = getLastUpdate(updated: result.first?.updated)
-            }else{
-            //DBのデータがないためAPIを叩く
-                execution = true
-            }
-        }else{
-            execution = true
-        }
-        
-        //圏外だったらDBを採用
-        do{
-            let reachability = try Reachability()
-            if reachability.connection == .unavailable {
-                //圏外かつDBにデータがない時はエラーを吐かせる
-                if dbResult == nil {
-                    resolver.reject(APIError.networkError)
-                }else{
-                    execution = false
-                }
-            }
-        }catch{
-            print("Reachabilityのインスタンス生成に失敗しました")
-        }
+        //DBにデータがある場合
+        if let result = dbResult{
+            self.prefectures = result
             
-        //1分以上もしくは再更新の依頼のためAPI取得
-        if execution {
-            firstly {
-                //APIを取得
-                self.api.prefecturesAPI()
-            }.then{ result in
-                //APIのレスポンスをデコード
-                DecodePrefectures.jsonDecode(data: result)
-            }.done{ prefectures in//staticメソッドだから強参照ではないと考え [weak self]を除外　[weak self]に関してはもう少し理解が必要
-                
-                self.prefectures = prefectures
-                if dbResult == nil {
-                    //データベースに追加
-                    RealmDB.setPrefecturesOnRealmDB(prefectures: self.prefectures)
-                }else{
-                    //データベースを更新
-                    RealmDB.updatePrefecturesOnRealmDB(prefectures: self.prefectures)
-                }
+            //圏外ならDBの値を返す
+            if reachability.connection == .unavailable{
                 resolver.fulfill(self.prefectures)
-            }.catch{ error in
-                resolver.reject(error)
+                return promise
             }
-        }else{
+            
+            //圏内かつ最終更新時間が1分以内でもDBの値を返す
+            if getLastUpdate(updated: result.first?.updated){
+                resolver.fulfill(self.prefectures)
+                return promise
+            }
+        }
+        
+        //DBに値がない場合かつ、1分以上の場合はAPI叩く
+        firstly {
+            //APIを取得
+            self.api.prefecturesAPI()
+        }.then{ result in
+            //APIのレスポンスをデコード
+            DecodePrefectures.jsonDecode(data: result)
+        }.done{ prefectures in//staticメソッドだから強参照ではないと考え [weak self]を除外　[weak self]に関してはもう少し理解が必要
+            
+            self.prefectures = prefectures
+            if dbResult == nil {
+                //データベースに追加
+                self.realmDB.setPrefecturesOnRealmDB(prefectures: self.prefectures)
+            }else{
+                //データベースを更新
+                self.realmDB.updatePrefecturesOnRealmDB(prefectures: self.prefectures)
+            }
             resolver.fulfill(self.prefectures)
+        }.catch{ error in
+            resolver.reject(error)
         }
         return promise
     }
@@ -117,7 +108,7 @@ extension PrefecturesModel:PrefecturesInput{
     }
     //    MARK: - 該当レコードをデータベースより取得
     internal func getDetails(id: Int){
-        self.details = RealmDB.getprefecturesByID(id: id)
+        self.details = realmDB.getprefecturesByID(id: id)
     }
     
 }

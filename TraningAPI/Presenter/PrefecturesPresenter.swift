@@ -34,7 +34,7 @@ class PrefecturesPresenter{
     
     //初期化 この時点でもうモデル知ってる必要ある？
     //それともViewから指定すればいい？？
-    init(delegate: PrefecturesView, model: PrefecturesInput = PrefecturesModel()){
+    init(delegate: PrefecturesView, model: PrefecturesInput = PrefecturesUseCase()){
         self.delegate = delegate
         self.model = model
         

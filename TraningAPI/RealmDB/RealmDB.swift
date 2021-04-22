@@ -12,13 +12,20 @@ import RealmSwift
 final class RealmDB{
     
     //本当はDoでエラーキャッチしなくてはいけないはず
-    static let realm = try? Realm()
+    private let realm:Realm!
+    init() {
+        do {
+            realm = try Realm()
+        }catch{
+            realm = nil
+        }
+    }
     
     //    MARK: - Create Record　レコードを追加
     ///
     /// - Parameters:
     ///   - prefectures:Prefecturesクラスの配列
-    static func setPrefecturesOnRealmDB(prefectures:[Prefectures]){
+    func setPrefecturesOnRealmDB(prefectures:[Prefectures]){
         do {
             try self.realm?.write {
                 self.realm?.add(prefectures)
@@ -30,7 +37,7 @@ final class RealmDB{
     ///
     /// - Parameters:
     ///   - prefectures:Prefecturesクラスの配列
-    static func updatePrefecturesOnRealmDB(prefectures:[Prefectures]){
+    func updatePrefecturesOnRealmDB(prefectures:[Prefectures]){
         do {
             try self.realm?.write {
                 self.realm?.add(prefectures, update: .modified)
@@ -41,7 +48,7 @@ final class RealmDB{
     //    MARK: - Get All Record　全レコードを取得
     ///
     /// - Returns:Prefecturesクラスの配列
-    static func getPrefecturesByRealmDB() -> [Prefectures]?{
+    func getPrefecturesByRealmDB() -> [Prefectures]?{
         var prefectures:[Prefectures]? = [Prefectures]()
         //全権取得
         if let results = self.realm?.objects(Prefectures.self){
@@ -59,7 +66,7 @@ final class RealmDB{
     /// - Parameters:
     ///   - id:Prefecturesテーブルのプライマリキー
     /// - Returns:Prefecturesクラスの配列
-    static func getprefecturesByID(id: Int) -> Prefectures?{
+    func getprefecturesByID(id: Int) -> Prefectures?{
         //プライマリキーで取得
         if let result = self.realm?.object(ofType: Prefectures.self, forPrimaryKey: id){
             return result
