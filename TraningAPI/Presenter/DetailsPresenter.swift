@@ -31,6 +31,6 @@ extension DetailsPresenter: DetailsPresenterInput{
         model.getDetails(id: id)
         let details = Details.detailsToArray(prefectures: self.model.details)
         self.delegate.setContent(details: details)
-        self.delegate.setTitle(name: self.model.details.name_ja)
+        self.delegate.setTitle(name: self.model.details.name)
     }
 }

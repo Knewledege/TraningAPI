@@ -67,6 +67,6 @@ extension PrefecturesPresenter: PrefecturesPresenterInput{
     }
      ///都道府県名設定
     func getPrefectureName(index:Int) -> String{
-        return self.model.prefectures[index].name_ja
+        return self.model.prefectures[index].name
     }
 }

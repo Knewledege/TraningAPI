@@ -8,6 +8,7 @@ target 'TraningAPI' do
   pod "Alamofire"
   pod "RealmSwift"
   pod 'ReachabilitySwift'
+  pod 'SwiftLint'
 
 
   # Pods for TraningAPI

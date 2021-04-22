@@ -52,11 +52,10 @@ final class RealmDB{
         var prefectures:[Prefectures]? = [Prefectures]()
         //全権取得
         if let results = self.realm?.objects(Prefectures.self){
-            let count = results.count
-            if (count != 0) {
-                results.forEach{ prefectures?.append($0)}
-            }else{
+            if results.isEmpty {
                 return nil
+            }else{
+                results.forEach{ prefectures?.append($0)}
             }
         }
         return prefectures

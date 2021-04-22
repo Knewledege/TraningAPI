@@ -15,12 +15,14 @@ PODS:
   - Realm/Headers (10.7.2)
   - RealmSwift (10.7.2):
     - Realm (= 10.7.2)
+  - SwiftLint (0.43.1)
 
 DEPENDENCIES:
   - Alamofire
   - PromiseKit (~> 6.8)
   - ReachabilitySwift
   - RealmSwift
+  - SwiftLint
 
 SPEC REPOS:
   trunk:
@@ -29,6 +31,7 @@ SPEC REPOS:
     - ReachabilitySwift
     - Realm
     - RealmSwift
+    - SwiftLint
 
 SPEC CHECKSUMS:
   Alamofire: bfbc4c2fe5909b1d94fb4ef2277c6b3727ef5dae
@@ -36,7 +39,8 @@ SPEC CHECKSUMS:
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
   Realm: e523da9ade306c5ae87e85dc09fdef148d3e1cc1
   RealmSwift: 4f6758c3adbdcc87f7b7777107226532a077f61c
+  SwiftLint: 99f82d07b837b942dd563c668de129a03fc3fb52
 
-PODFILE CHECKSUM: f8cdb7a0a0614ce9397d9606598fad4e211d3ae8
+PODFILE CHECKSUM: 4f6ec3b5fdb06932a604aa0be99f69c53cabe047
 
 COCOAPODS: 1.10.0

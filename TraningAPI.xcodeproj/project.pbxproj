@@ -18,6 +18,7 @@
 		FFAC3E50262691810015DEDB /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFAC3E4F262691810015DEDB /* Alamofire.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		FFAC3E522626B5790015DEDB /* PrefecturesEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAC3E512626B5790015DEDB /* PrefecturesEntity.swift */; };
 		FFAC3E542626BA2D0015DEDB /* PrefecturesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAC3E532626BA2D0015DEDB /* PrefecturesPresenter.swift */; };
+		FFBF4D5B263154AE00CE5352 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = FFBF4D5A263154AE00CE5352 /* .swiftlint.yml */; };
 		FFC6D0B32627F23D007920C5 /* PrefecturesListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC6D0B12627F23D007920C5 /* PrefecturesListTableViewCell.swift */; };
 		FFC6D0B42627F23D007920C5 /* PrefecturesListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFC6D0B22627F23D007920C5 /* PrefecturesListTableViewCell.xib */; };
 		FFC6D0B6262820E4007920C5 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC6D0B5262820E4007920C5 /* APIError.swift */; };
@@ -67,6 +68,7 @@
 		FFAC3E4F262691810015DEDB /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFAC3E512626B5790015DEDB /* PrefecturesEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrefecturesEntity.swift; sourceTree = "<group>"; };
 		FFAC3E532626BA2D0015DEDB /* PrefecturesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrefecturesPresenter.swift; sourceTree = "<group>"; };
+		FFBF4D5A263154AE00CE5352 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		FFC6D0B12627F23D007920C5 /* PrefecturesListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrefecturesListTableViewCell.swift; sourceTree = "<group>"; };
 		FFC6D0B22627F23D007920C5 /* PrefecturesListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrefecturesListTableViewCell.xib; sourceTree = "<group>"; };
 		FFC6D0B5262820E4007920C5 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 		FFD1489726267B1300263EC8 = {
 			isa = PBXGroup;
 			children = (
+				FFBF4D5A263154AE00CE5352 /* .swiftlint.yml */,
 				FFD148A226267B1300263EC8 /* TraningAPI */,
 				FFD148B926267B1500263EC8 /* TraningAPITests */,
 				FFD148C426267B1500263EC8 /* TraningAPIUITests */,
@@ -265,6 +268,7 @@
 				FFD1489D26267B1300263EC8 /* Frameworks */,
 				FFD1489E26267B1300263EC8 /* Resources */,
 				FAAE050AD83090593B7A6000 /* [CP] Embed Pods Frameworks */,
+				FFBF4D59263153F500CE5352 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -362,6 +366,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FFBF4D5B263154AE00CE5352 /* .swiftlint.yml in Resources */,
 				FFC6D0B42627F23D007920C5 /* PrefecturesListTableViewCell.xib in Resources */,
 				FFD148B026267B1400263EC8 /* LaunchScreen.storyboard in Resources */,
 				FFD148AD26267B1400263EC8 /* Assets.xcassets in Resources */,
@@ -485,6 +490,23 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TraningAPI/Pods-TraningAPI-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		FFBF4D59263153F500CE5352 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which \"${PODS_ROOT}/SwiftLint/swiftlint\" >/dev/null; then\n  \"${PODS_ROOT}/SwiftLint/swiftlint\"\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

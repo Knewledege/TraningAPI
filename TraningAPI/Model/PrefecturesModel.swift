@@ -98,13 +98,13 @@ extension PrefecturesUseCase:PrefecturesInput{
         if let lastUpdate = updated{
             //分単位で比較
             let difference = Calendar.current.dateComponents([.minute], from: lastUpdate, to: Date()).minute ?? 0
-                 if difference > 1{
-                     return true
-                 }
+            if difference > 1{
+                return false
+            }
         }else{
-            return true
+            return false
         }
-        return false
+        return true
     }
     //    MARK: - 該当レコードをデータベースより取得
     internal func getDetails(id: Int){
