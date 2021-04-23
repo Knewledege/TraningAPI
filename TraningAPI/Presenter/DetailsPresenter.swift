@@ -17,7 +17,7 @@ protocol  DetailsPresenterOutput:class {
 
 class DetailsPresenter{
     
-    private weak var delegate: DetailsPresenterOutput!
+    private weak var delegate: DetailsPresenterOutput?
     private var model: PrefecturesInput
     init(delegate: DetailsPresenterOutput, model: PrefecturesInput = PrefecturesUseCase()) {
         self.delegate = delegate
@@ -28,9 +28,10 @@ class DetailsPresenter{
 extension DetailsPresenter: DetailsPresenterInput{
     ///感染者数詳細表示
     func getPrefecturesInfo(id: Int){
+        guard let delegate = self.delegate else { return }
         model.getDetails(id: id)
         let details = Details.detailsToArray(prefectures: self.model.details)
-        self.delegate.setContent(details: details)
-        self.delegate.setTitle(name: self.model.details.name)
+        delegate.setContent(details: details)
+        delegate.setTitle(name: self.model.details.name)
     }
 }

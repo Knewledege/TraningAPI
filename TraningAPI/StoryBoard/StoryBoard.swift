@@ -15,10 +15,10 @@ enum Board {
     func boardInit(id: Int) -> UIViewController{
         switch self {
         case .prefecturesList:
-            let nextVC = PrefecturesList()
+            let nextVC = PrefecturesListViewController()
             return nextVC
         case .details:
-            let nextVC = DetailsView()
+            let nextVC = DetailsViewController()
             nextVC.id = id
             return nextVC
         }

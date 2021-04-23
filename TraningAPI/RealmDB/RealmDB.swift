@@ -12,7 +12,7 @@ import RealmSwift
 final class RealmDB{
     
     //本当はDoでエラーキャッチしなくてはいけないはず
-    private let realm:Realm!
+    private var realm:Realm?
     init() {
         do {
             realm = try Realm()

@@ -22,7 +22,7 @@ protocol PrefecturesPresenterInput {
 }
 
 class PrefecturesPresenter{
-    private weak var delegate: PrefecturesView!
+    private weak var delegate: PrefecturesView?
     private var model: PrefecturesInput
     var storyboard: StoryBoard = StoryBoard()
     private let format = DateFormatter()
@@ -47,20 +47,21 @@ class PrefecturesPresenter{
 extension PrefecturesPresenter: PrefecturesPresenterInput{
     ///都道府県情報一覧設定
     func getPrefecturesModel(updateComp: Bool){
+        guard let delegate = self.delegate else { return }
         print("Modelに情報を取りにいかせる")
         
         firstly {
             self.model.getPregectures(executionRequest: updateComp)
         }.done{ result in
             print("Modelの結果をViewに渡す")
-            self.delegate.setList()
+            delegate.setList()
             if let date = result.first?.updated{
                 let lastUpDate = self.format.string(from: date)
-                self.delegate.setlastUpdate(lastUpdate: lastUpDate)
+                delegate.setlastUpdate(lastUpdate: lastUpDate)
             }
         }.catch{ error in
             if let apiError:APIError = error as? APIError{
-                self.delegate.alert(error: apiError)
+                delegate.alert(error: apiError)
             }
             
         }

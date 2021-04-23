@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PrefecturesList: UIViewController{
+class PrefecturesListViewController: UIViewController{
     
     private var presenter: PrefecturesPresenterInput!
 
@@ -39,7 +39,7 @@ class PrefecturesList: UIViewController{
         presenter.getPrefecturesModel(updateComp: false)
     }
 }
-extension PrefecturesList:PrefecturesView{
+extension PrefecturesListViewController:PrefecturesView{
     func setList() {
         print("Presenterから再描画の指示があったのでVIewを更新する")
         prefecturesListTableView.reloadData()
@@ -58,7 +58,7 @@ extension PrefecturesList:PrefecturesView{
         self.present(alert, animated: true, completion: nil)
     }
 }
-extension PrefecturesList:UITableViewDelegate{
+extension PrefecturesListViewController:UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //遷移とPresenterから情報を渡す
         /*
@@ -67,7 +67,7 @@ extension PrefecturesList:UITableViewDelegate{
         StoryBoard.perform(id: indexPath.row + 1, to: Board.details, from: self)
     }
 }
-extension PrefecturesList:UITableViewDataSource{
+extension PrefecturesListViewController:UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return presenter.numberOfPrefectures
     }

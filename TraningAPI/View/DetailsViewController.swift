@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DetailsView: UIViewController {
+class DetailsViewController: UIViewController {
     // MARK: - Parameters
     //都道府県名表示ラベル
     var titleLabel: UILabel!
@@ -87,7 +87,7 @@ class DetailsView: UIViewController {
     */
 
 }
-extension DetailsView: DetailsPresenterOutput{
+extension DetailsViewController: DetailsPresenterOutput{
     
     //    MARK: - 都道府県名表示
     ///
