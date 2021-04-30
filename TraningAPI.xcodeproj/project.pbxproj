@@ -39,6 +39,7 @@
 		FFD148B026267B1400263EC8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFD148AE26267B1400263EC8 /* LaunchScreen.storyboard */; };
 		FFD148BB26267B1500263EC8 /* TraningAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD148BA26267B1500263EC8 /* TraningAPITests.swift */; };
 		FFD148C626267B1500263EC8 /* TraningAPIUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD148C526267B1500263EC8 /* TraningAPIUITests.swift */; };
+		FFD9498E263B826B005A275F /* SQLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD9498D263B826B005A275F /* SQLite.swift */; };
 		FFFF3F0E262FC9FB000D42B6 /* RealmDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFF3F0D262FC9FB000D42B6 /* RealmDB.swift */; };
 /* End PBXBuildFile section */
 
@@ -104,6 +105,7 @@
 		FFD148C126267B1500263EC8 /* TraningAPIUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TraningAPIUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFD148C526267B1500263EC8 /* TraningAPIUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraningAPIUITests.swift; sourceTree = "<group>"; };
 		FFD148C726267B1500263EC8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FFD9498D263B826B005A275F /* SQLite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SQLite.swift; sourceTree = "<group>"; };
 		FFFF3F0D262FC9FB000D42B6 /* RealmDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDB.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -284,6 +286,7 @@
 				FFAC3E4826267D100015DEDB /* View */,
 				FFAC3E4926267D190015DEDB /* Presenter */,
 				FFAC3E4726267D090015DEDB /* Model */,
+				FFD9498C263B821A005A275F /* SQLite */,
 				FFFF3F0C262FC9D5000D42B6 /* RealmDB */,
 				FFAC3E4C26268C790015DEDB /* API */,
 				AAEDBB572629743C000FE023 /* StoryBoard */,
@@ -313,6 +316,14 @@
 				FFD148C726267B1500263EC8 /* Info.plist */,
 			);
 			path = TraningAPIUITests;
+			sourceTree = "<group>";
+		};
+		FFD9498C263B821A005A275F /* SQLite */ = {
+			isa = PBXGroup;
+			children = (
+				FFD9498D263B826B005A275F /* SQLite.swift */,
+			);
+			path = SQLite;
 			sourceTree = "<group>";
 		};
 		FFFF3F0C262FC9D5000D42B6 /* RealmDB */ = {
@@ -585,6 +596,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AAEDBB5926297464000FE023 /* StoryBoard.swift in Sources */,
+				FFD9498E263B826B005A275F /* SQLite.swift in Sources */,
 				FF774E04263926600087C262 /* MenuViewController.swift in Sources */,
 				FFD148A826267B1300263EC8 /* PrefecturesListViewController.swift in Sources */,
 				FF62CD422637AFA4003DB240 /* ConstEntity.swift in Sources */,

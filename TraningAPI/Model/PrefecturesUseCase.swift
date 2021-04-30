@@ -22,12 +22,14 @@ class PrefecturesUseCase{
     internal var prefectures: [Prefectures] = []
     internal var details: Prefectures!
     private let api:GithubAPI!
-    private let realmDB:RealmDB!
+//    private let realmDB:RealmDB!
+    private let sqLite: SQLite!
     private let reachability:Reachability!
    
-    init(api: GithubAPI = GithubAPI(), localDB: RealmDB = RealmDB()){
+//    init(api: GithubAPI = GithubAPI(), localDB: RealmDB = RealmDB()){
+    init(api: GithubAPI = GithubAPI(), localDB: SQLite = SQLite()){
         self.api = api
-        self.realmDB = localDB
+        self.sqLite = localDB
         
          do{
             reachability = try Reachability()
@@ -50,7 +52,8 @@ extension PrefecturesUseCase:PrefecturesInput{
         let (promise, resolver) = Promise<[Prefectures]>.pending()
         
         //DB全取得
-        let dbResult = realmDB.getPrefecturesByRealmDB()
+//        let dbResult = realmDB.getPrefecturesByRealmDB()
+        let dbResult = sqLite.fetchPrefectures()
         
         //DBにデータがある場合
         if let result = dbResult{
@@ -79,13 +82,14 @@ extension PrefecturesUseCase:PrefecturesInput{
         }.done{ prefectures in//staticメソッドだから強参照ではないと考え [weak self]を除外　[weak self]に関してはもう少し理解が必要
             
             self.prefectures = prefectures
-            if dbResult == nil {
-                //データベースに追加
-                self.realmDB.setPrefecturesOnRealmDB(prefectures: self.prefectures)
-            }else{
-                //データベースを更新
-                self.realmDB.updatePrefecturesOnRealmDB(prefectures: self.prefectures)
-            }
+//            if dbResult == nil {
+//                //データベースに追加
+//                self.realmDB.setPrefecturesOnRealmDB(prefectures: self.prefectures)
+//            }else{
+//                //データベースを更新
+//                self.realmDB.updatePrefecturesOnRealmDB(prefectures: self.prefectures)
+//            }
+            self.sqLite.insertPrefectures(prefectures: self.prefectures)
             resolver.fulfill(self.prefectures)
         }.catch{ error in
             resolver.reject(error)
@@ -108,7 +112,8 @@ extension PrefecturesUseCase:PrefecturesInput{
     }
     //    MARK: - 該当レコードをデータベースより取得
     internal func getDetails(id: Int){
-        self.details = realmDB.getprefecturesByID(id: id)
+//        self.details = realmDB.getprefecturesByID(id: id)
+        self.details = sqLite.getprefecturesByID(id: id)
     }
     
 }

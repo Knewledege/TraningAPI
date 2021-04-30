@@ -1,5 +1,8 @@
 PODS:
   - Alamofire (5.4.2)
+  - GRDB.swift (5.7.4):
+    - GRDB.swift/standard (= 5.7.4)
+  - GRDB.swift/standard (5.7.4)
   - PromiseKit (6.13.1):
     - PromiseKit/CorePromise (= 6.13.1)
     - PromiseKit/Foundation (= 6.13.1)
@@ -19,6 +22,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
+  - GRDB.swift
   - PromiseKit (~> 6.8)
   - ReachabilitySwift
   - RealmSwift
@@ -27,6 +31,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
+    - GRDB.swift
     - PromiseKit
     - ReachabilitySwift
     - Realm
@@ -35,12 +40,13 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: bfbc4c2fe5909b1d94fb4ef2277c6b3727ef5dae
+  GRDB.swift: 2064e726141f130d0b8bd819b29086f2b1157597
   PromiseKit: 28fda91c973cc377875d8c0ea4f973013c05b6db
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
   Realm: e523da9ade306c5ae87e85dc09fdef148d3e1cc1
   RealmSwift: 4f6758c3adbdcc87f7b7777107226532a077f61c
   SwiftLint: 99f82d07b837b942dd563c668de129a03fc3fb52
 
-PODFILE CHECKSUM: 4f6ec3b5fdb06932a604aa0be99f69c53cabe047
+PODFILE CHECKSUM: fce1696610c5ebdae3fcc6dd991a490fd8cfddc7
 
 COCOAPODS: 1.10.0

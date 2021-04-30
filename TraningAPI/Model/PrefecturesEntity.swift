@@ -9,7 +9,9 @@
 import Foundation
 import RealmSwift
 import PromiseKit
+import GRDB
 
+/*
 //    MARK: - 都道府県情報テーブル
 class Prefectures: Object, Codable {
     @objc dynamic var id:Int = 0
@@ -82,6 +84,64 @@ class LastUpdated: Object, Codable{
     @objc dynamic var severeDate:Int = 0
     @objc dynamic var dischargeDate:Int = 0
     @objc dynamic var symptomConfirmingDate:Int = 0
+    enum CodingKeys: String, CodingKey {
+        case casesDate = "cases_date"
+        case deathsDate = "deaths_date"
+        case pcrDate = "pcr_date"
+        case hospitalizeDate = "hospitalize_date"
+        case severeDate = "severe_date"
+        case dischargeDate = "discharge_date"
+        case symptomConfirmingDate = "symptom_confirming_date"
+    }
+}
+*/
+struct Prefectures : Codable, FetchableRecord, PersistableRecord  {
+    var id:Int
+    var name:String
+    var population:Int
+    var cases:Int
+    var deaths:Int
+    var pcr:Int
+    var hospitalize:Int
+    var severe:Int
+    var discharge:Int
+    var symptomConfirming:Int
+    var lastUpdated:LastUpdate
+    static var databaseTableName: String {
+        return "prefectures"  // テーブル名
+    }
+
+//    static func create(_ db: Database) throws {
+//        try db.create(table: databaseTableName, body: { (t: TableDefinition) in
+//            t.column("id", .integer).primaryKey(onConflict: .replace, autoincrement: false)
+//            t.column("name", .text).notNull()
+//            t.column("age", .integer).notNull()
+//            t.column("lastUpdate", .integer).notNull()
+//        })
+//    }
+    var updated:Date = Date()
+    enum CodingKeys: String, CodingKey {
+        case id
+        case name = "name_ja"
+        case population
+        case cases
+        case deaths
+        case pcr
+        case hospitalize
+        case severe
+        case discharge
+        case symptomConfirming = "symptom_confirming"
+        case lastUpdated = "last_updated"
+    }
+}
+struct LastUpdate : Codable {
+    var casesDate:Int
+    var deathsDate:Int
+    var pcrDate:Int
+    var hospitalizeDate:Int
+    var severeDate:Int
+    var dischargeDate:Int
+    var symptomConfirmingDate:Int
     enum CodingKeys: String, CodingKey {
         case casesDate = "cases_date"
         case deathsDate = "deaths_date"
@@ -171,13 +231,13 @@ class Details{
     static func detailsToArray(prefectures: Prefectures) -> [[String]]{
         var details: [[String]] = [[]]
         details = [
-            [DetailsConst.CASES, prefectures.cases.description, prefectures.lastUpdated?.casesDate.description ?? "0"],
-            [DetailsConst.DEATHS, prefectures.deaths.description, prefectures.lastUpdated?.deathsDate.description ?? "0"],
-            [DetailsConst.PCR, prefectures.pcr.description, prefectures.lastUpdated?.pcrDate.description ?? "0"],
-            [DetailsConst.HOSPITALIZE, prefectures.hospitalize.description, prefectures.lastUpdated?.hospitalizeDate.description ?? "0"],
-            [DetailsConst.SEVERE, prefectures.severe.description, prefectures.lastUpdated?.severeDate.description ?? "0"],
-            [DetailsConst.DISCHARGE, prefectures.discharge.description, prefectures.lastUpdated?.dischargeDate.description ?? "0"],
-            [DetailsConst.SYMPTOMCONFIRMING, prefectures.symptomConfirming.description, prefectures.lastUpdated?.symptomConfirmingDate.description ?? "0"] ]
+            [DetailsConst.CASES, prefectures.cases.description, prefectures.lastUpdated.casesDate.description ?? "0"],
+            [DetailsConst.DEATHS, prefectures.deaths.description, prefectures.lastUpdated.deathsDate.description ?? "0"],
+            [DetailsConst.PCR, prefectures.pcr.description, prefectures.lastUpdated.pcrDate.description ?? "0"],
+            [DetailsConst.HOSPITALIZE, prefectures.hospitalize.description, prefectures.lastUpdated.hospitalizeDate.description ?? "0"],
+            [DetailsConst.SEVERE, prefectures.severe.description, prefectures.lastUpdated.severeDate.description ?? "0"],
+            [DetailsConst.DISCHARGE, prefectures.discharge.description, prefectures.lastUpdated.dischargeDate.description ?? "0"],
+            [DetailsConst.SYMPTOMCONFIRMING, prefectures.symptomConfirming.description, prefectures.lastUpdated.symptomConfirmingDate.description ?? "0"] ]
         return details
     }
 }

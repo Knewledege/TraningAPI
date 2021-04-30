@@ -9,7 +9,7 @@ target 'TraningAPI' do
   pod "RealmSwift"
   pod 'ReachabilitySwift'
   pod 'SwiftLint'
-
+  pod 'GRDB.swift'
 
   # Pods for TraningAPI
 

@@ -5,7 +5,7 @@
 //  Created by 高橋慧 on 2021/04/21.
 //  Copyright © 2021 k-takahashi. All rights reserved.
 //
-
+/*
 import Foundation
 import RealmSwift
 
@@ -74,3 +74,4 @@ final class RealmDB{
         return nil
     }
 }
+*/
