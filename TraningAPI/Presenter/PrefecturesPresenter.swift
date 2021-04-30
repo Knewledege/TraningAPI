@@ -19,6 +19,7 @@ protocol PrefecturesPresenterInput {
     var storyboard:StoryBoard { get }
     func getPrefecturesModel(updateComp: Bool)
     func getPrefectureName(index:Int) -> String
+    func getCasesNumber(index:Int) -> String
 }
 
 class PrefecturesPresenter{
@@ -68,6 +69,19 @@ extension PrefecturesPresenter: PrefecturesPresenterInput{
     }
      ///都道府県名設定
     func getPrefectureName(index:Int) -> String{
-        return self.model.prefectures[index].name
+        if self.model.prefectures.isEmpty{
+            return ""
+        }else{
+            return self.model.prefectures[index].name
+        }
+    }
+    
+    func getCasesNumber(index:Int) -> String{
+        if self.model.prefectures.isEmpty{
+            return ""
+        }else{
+            return String(self.model.prefectures[index].cases)
+        }
+        
     }
 }

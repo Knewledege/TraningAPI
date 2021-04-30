@@ -19,6 +19,7 @@ final class RealmDB{
         }catch{
             realm = nil
         }
+        
     }
     
     //    MARK: - Create Record　レコードを追加

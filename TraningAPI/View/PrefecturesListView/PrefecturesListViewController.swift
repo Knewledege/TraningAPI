@@ -20,6 +20,11 @@ class PrefecturesListViewController: UIViewController{
         }
     }
     
+    @IBOutlet weak var menuViewToggle: UIButton!{
+        didSet{
+            menuViewToggle.addTarget(self, action: #selector(menuView), for: .touchUpInside)
+        }
+    }
     @IBOutlet weak var lastUpdateLabel: UILabel!
     @IBOutlet weak var reloadButton: UIButton!{
         didSet{
@@ -33,8 +38,12 @@ class PrefecturesListViewController: UIViewController{
         presenter = PrefecturesPresenter(delegate: self)
         print("Presenterに情報取得の指示")
         presenter.getPrefecturesModel(updateComp: true)
+        self.navigationController?.navigationBar.isHidden = true
+        
     }
-    
+    @objc func menuView(){
+        StoryBoard.perform(id: 0, to: .menuView, from: self)
+    }
     @objc func reloadTableView(){
         presenter.getPrefecturesModel(updateComp: false)
     }
@@ -64,19 +73,56 @@ extension PrefecturesListViewController:UITableViewDelegate{
         /*
          Viewではあくまでも依頼を流すだけなら、Presenterに書くべき処理？
          */
-        StoryBoard.perform(id: indexPath.row + 1, to: Board.details, from: self)
+        if let indexRow = RegionModel.Region(rawValue: indexPath.section)?.prefecturesID[indexPath.row]{
+            StoryBoard.perform(id: indexRow+1, to: Board.details, from: self)
+        }
+        
+    }
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = UITableViewHeaderFooterView()
+        let gesture = UITapGestureRecognizer(target: self,
+                                             action: #selector(touchHeader))
+        header.addGestureRecognizer(gesture)
+        header.tag = section
+        return header
+    }
+    @objc func touchHeader(_ sender: UITapGestureRecognizer) {
+        guard let section = sender.view?.tag else { return }
+        RegionModel.nameIsHidden[section] = !RegionModel.nameIsHidden[section]
+        prefecturesListTableView.beginUpdates()
+        prefecturesListTableView.reloadSections([section], with: .automatic)
+        prefecturesListTableView.endUpdates()
     }
 }
-extension PrefecturesListViewController:UITableViewDataSource{
+extension PrefecturesListViewController: UITableViewDataSource{
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        guard let region = RegionModel.Region(rawValue: section) else { return "" }
+        return region.name
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return RegionModel.regions.count
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter.numberOfPrefectures
+        guard let region = RegionModel.Region(rawValue: section) else { return 0 }
+       
+        if RegionModel.nameIsHidden[section] {
+            return 0
+        }else{
+            return region.prefecturesID.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: PrefecturesListTableViewCell.cellIdentifer, for: indexPath) as? PrefecturesListTableViewCell else{
             return UITableViewCell()
         }
-        cell.nameLabelConfigure(name: presenter.getPrefectureName(index: indexPath.row))
+        if let indexRow = RegionModel.Region(rawValue: indexPath.section)?.prefecturesID[indexPath.row]{
+            cell.nameLabelConfigure(name: presenter.getPrefectureName(index: indexRow ))
+            cell.infectedConfigure(number: presenter.getCasesNumber(index: indexRow))
+        }
         return cell
     }
     

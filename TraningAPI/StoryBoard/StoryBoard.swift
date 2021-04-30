@@ -11,15 +11,43 @@ enum Board {
 
     case prefecturesList
     case details
+    case menuView
+    case licenceList
+    case licenceContent
     
-    func boardInit(id: Int) -> UIViewController{
+    var identifer: String{
+        switch self {
+        case .prefecturesList: return "PrefecturesListViewController"
+        case .details:         return "DetailsViewController"
+        case .menuView:        return "MenuViewController"
+        case .licenceList:     return "LicenceListViewController"
+        case .licenceContent:  return "LicenceContentViewController"
+        }
+    }
+    
+    func boardInit(id: Int) -> UIViewController?{
         switch self {
         case .prefecturesList:
-            let nextVC = PrefecturesListViewController()
+            let nextVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: self.identifer) as? PrefecturesListViewController
             return nextVC
         case .details:
-            let nextVC = DetailsViewController()
-            nextVC.id = id
+            let nextVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: self.identifer) as? DetailsViewController
+            nextVC?.id = id
+            return nextVC
+        case .menuView:
+            let nextV = MenuViewController()
+            let nextVC = UINavigationController(rootViewController: nextV)
+            nextVC.navigationController?.navigationBar.isHidden = true
+            nextV.navigationController?.navigationBar.isHidden = true
+            nextVC.modalPresentationStyle = .overCurrentContext
+            return nextVC
+        case .licenceList:
+            let nextVC = LicenceListViewController()
+            return nextVC
+        case .licenceContent:
+            let nextVC = LicenceContentViewController()
+            nextVC.title = ConstEntity.LIBRARYTITLE[id]
+            nextVC.content = ConstEntity.LIBRARYCONTENT[id]
             return nextVC
         }
     }
@@ -32,8 +60,16 @@ final class StoryBoard{
     ///   - id :Prefecturesテーブルのid
     ///   - to:遷移先のViewController
     ///   - from:遷移元のViewController
+    ///Present Modal遷移
     static func perform(id:Int, to:Board, from:UIViewController){
-        let nextVC = to.boardInit(id: id)
-        from.present(nextVC, animated: true, completion: nil)
+        if let nextVC = to.boardInit(id: id){
+            from.present(nextVC, animated: false, completion: nil)
+        }
+    }
+    ///Show遷移
+    static func performNavi(id:Int, to:Board, from:UIViewController){
+        if let nextVC = to.boardInit(id: id){
+            from.navigationController?.pushViewController(nextVC, animated: true)
+        }
     }
 }

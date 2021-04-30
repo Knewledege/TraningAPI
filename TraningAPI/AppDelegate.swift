@@ -11,10 +11,18 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
+    var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+//        if let first = Board.prefecturesList.boardInit(id: 0){
+//            let naviVC = UINavigationController(rootViewController: first)
+//            
+//            self.window = UIWindow(frame: UIScreen.main.bounds)
+//            self.window?.rootViewController = naviVC
+//            self.window?.makeKeyAndVisible()
+//        
+//        }
         return true
     }
 

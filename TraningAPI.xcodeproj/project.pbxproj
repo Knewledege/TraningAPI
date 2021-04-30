@@ -12,7 +12,16 @@
 		A7DC3D2BF459D829FA2D3AEC /* Pods_TraningAPI_TraningAPIUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0D87D9414A6491616717D9E /* Pods_TraningAPI_TraningAPIUITests.framework */; };
 		AAEDBB5926297464000FE023 /* StoryBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEDBB5826297464000FE023 /* StoryBoard.swift */; };
 		AAEDBB612629758D000FE023 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEDBB602629758D000FE023 /* DetailsViewController.swift */; };
+		FF17C914263B21CA00FC6D80 /* LicenceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF17C912263B21CA00FC6D80 /* LicenceTableViewCell.swift */; };
+		FF17C915263B21CA00FC6D80 /* LicenceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF17C913263B21CA00FC6D80 /* LicenceTableViewCell.xib */; };
+		FF17C918263B27CE00FC6D80 /* LicenceContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF17C917263B27CE00FC6D80 /* LicenceContentViewController.swift */; };
+		FF44CFDB263ADB1E00DD776A /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF44CFD9263ADB1E00DD776A /* MenuTableViewCell.swift */; };
+		FF44CFDC263ADB1E00DD776A /* MenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF44CFDA263ADB1E00DD776A /* MenuTableViewCell.xib */; };
+		FF62CD422637AFA4003DB240 /* ConstEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF62CD412637AFA3003DB240 /* ConstEntity.swift */; };
 		FF735BD4262D5AD4007CDEB5 /* DetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF735BD3262D5AD4007CDEB5 /* DetailsPresenter.swift */; };
+		FF774E04263926600087C262 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF774E02263926600087C262 /* MenuViewController.swift */; };
+		FF774E0726393BCF0087C262 /* StackViewFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF774E0626393BCF0087C262 /* StackViewFrame.swift */; };
+		FF774E0B2639514F0087C262 /* LicenceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF774E0A2639514F0087C262 /* LicenceListViewController.swift */; };
 		FFAC3E4B26268A980015DEDB /* PrefecturesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAC3E4A26268A980015DEDB /* PrefecturesUseCase.swift */; };
 		FFAC3E4E26268C8E0015DEDB /* GithubAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAC3E4D26268C8E0015DEDB /* GithubAPI.swift */; };
 		FFAC3E50262691810015DEDB /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFAC3E4F262691810015DEDB /* Alamofire.framework */; settings = {ATTRIBUTES = (Required, ); }; };
@@ -62,7 +71,16 @@
 		BA56353ECD607438420047EC /* Pods-TraningAPITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TraningAPITests.debug.xcconfig"; path = "Target Support Files/Pods-TraningAPITests/Pods-TraningAPITests.debug.xcconfig"; sourceTree = "<group>"; };
 		BB2AF43914CA8FA048654056 /* Pods-TraningAPI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TraningAPI.debug.xcconfig"; path = "Target Support Files/Pods-TraningAPI/Pods-TraningAPI.debug.xcconfig"; sourceTree = "<group>"; };
 		D0D87D9414A6491616717D9E /* Pods_TraningAPI_TraningAPIUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TraningAPI_TraningAPIUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF17C912263B21CA00FC6D80 /* LicenceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicenceTableViewCell.swift; sourceTree = "<group>"; };
+		FF17C913263B21CA00FC6D80 /* LicenceTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LicenceTableViewCell.xib; sourceTree = "<group>"; };
+		FF17C917263B27CE00FC6D80 /* LicenceContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicenceContentViewController.swift; sourceTree = "<group>"; };
+		FF44CFD9263ADB1E00DD776A /* MenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
+		FF44CFDA263ADB1E00DD776A /* MenuTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuTableViewCell.xib; sourceTree = "<group>"; };
+		FF62CD412637AFA3003DB240 /* ConstEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstEntity.swift; sourceTree = "<group>"; };
 		FF735BD3262D5AD4007CDEB5 /* DetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsPresenter.swift; sourceTree = "<group>"; };
+		FF774E02263926600087C262 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		FF774E0626393BCF0087C262 /* StackViewFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackViewFrame.swift; sourceTree = "<group>"; };
+		FF774E0A2639514F0087C262 /* LicenceListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicenceListViewController.swift; sourceTree = "<group>"; };
 		FFAC3E4A26268A980015DEDB /* PrefecturesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrefecturesUseCase.swift; sourceTree = "<group>"; };
 		FFAC3E4D26268C8E0015DEDB /* GithubAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubAPI.swift; sourceTree = "<group>"; };
 		FFAC3E4F262691810015DEDB /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -150,11 +168,58 @@
 			path = StoryBoard;
 			sourceTree = "<group>";
 		};
+		FF17C916263B274600FC6D80 /* LicenceContentView */ = {
+			isa = PBXGroup;
+			children = (
+				FF17C917263B27CE00FC6D80 /* LicenceContentViewController.swift */,
+			);
+			path = LicenceContentView;
+			sourceTree = "<group>";
+		};
+		FF44CFDD263B1C7E00DD776A /* PrefecturesListView */ = {
+			isa = PBXGroup;
+			children = (
+				FFD148A726267B1300263EC8 /* PrefecturesListViewController.swift */,
+				FFC6D0B12627F23D007920C5 /* PrefecturesListTableViewCell.swift */,
+				FFC6D0B22627F23D007920C5 /* PrefecturesListTableViewCell.xib */,
+			);
+			path = PrefecturesListView;
+			sourceTree = "<group>";
+		};
+		FF44CFDE263B1CA300DD776A /* DerailsView */ = {
+			isa = PBXGroup;
+			children = (
+				AAEDBB602629758D000FE023 /* DetailsViewController.swift */,
+			);
+			path = DerailsView;
+			sourceTree = "<group>";
+		};
+		FF44CFDF263B1CB200DD776A /* MenuView */ = {
+			isa = PBXGroup;
+			children = (
+				FF774E02263926600087C262 /* MenuViewController.swift */,
+				FF44CFD9263ADB1E00DD776A /* MenuTableViewCell.swift */,
+				FF44CFDA263ADB1E00DD776A /* MenuTableViewCell.xib */,
+			);
+			path = MenuView;
+			sourceTree = "<group>";
+		};
+		FF44CFE0263B1CD300DD776A /* LicenceListView */ = {
+			isa = PBXGroup;
+			children = (
+				FF774E0A2639514F0087C262 /* LicenceListViewController.swift */,
+				FF17C912263B21CA00FC6D80 /* LicenceTableViewCell.swift */,
+				FF17C913263B21CA00FC6D80 /* LicenceTableViewCell.xib */,
+			);
+			path = LicenceListView;
+			sourceTree = "<group>";
+		};
 		FFAC3E4726267D090015DEDB /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				FFAC3E4A26268A980015DEDB /* PrefecturesUseCase.swift */,
 				FFAC3E512626B5790015DEDB /* PrefecturesEntity.swift */,
+				FF62CD412637AFA3003DB240 /* ConstEntity.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -162,10 +227,12 @@
 		FFAC3E4826267D100015DEDB /* View */ = {
 			isa = PBXGroup;
 			children = (
-				FFD148A726267B1300263EC8 /* PrefecturesListViewController.swift */,
-				FFC6D0B12627F23D007920C5 /* PrefecturesListTableViewCell.swift */,
-				FFC6D0B22627F23D007920C5 /* PrefecturesListTableViewCell.xib */,
-				AAEDBB602629758D000FE023 /* DetailsViewController.swift */,
+				FF44CFDD263B1C7E00DD776A /* PrefecturesListView */,
+				FF44CFDE263B1CA300DD776A /* DerailsView */,
+				FF44CFDF263B1CB200DD776A /* MenuView */,
+				FF44CFE0263B1CD300DD776A /* LicenceListView */,
+				FF17C916263B274600FC6D80 /* LicenceContentView */,
+				FF774E0626393BCF0087C262 /* StackViewFrame.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -366,8 +433,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF44CFDC263ADB1E00DD776A /* MenuTableViewCell.xib in Resources */,
 				FFBF4D5B263154AE00CE5352 /* .swiftlint.yml in Resources */,
 				FFC6D0B42627F23D007920C5 /* PrefecturesListTableViewCell.xib in Resources */,
+				FF17C915263B21CA00FC6D80 /* LicenceTableViewCell.xib in Resources */,
 				FFD148B026267B1400263EC8 /* LaunchScreen.storyboard in Resources */,
 				FFD148AD26267B1400263EC8 /* Assets.xcassets in Resources */,
 				FFD148AB26267B1300263EC8 /* Main.storyboard in Resources */,
@@ -516,7 +585,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				AAEDBB5926297464000FE023 /* StoryBoard.swift in Sources */,
+				FF774E04263926600087C262 /* MenuViewController.swift in Sources */,
 				FFD148A826267B1300263EC8 /* PrefecturesListViewController.swift in Sources */,
+				FF62CD422637AFA4003DB240 /* ConstEntity.swift in Sources */,
 				FFAC3E542626BA2D0015DEDB /* PrefecturesPresenter.swift in Sources */,
 				FFFF3F0E262FC9FB000D42B6 /* RealmDB.swift in Sources */,
 				FFAC3E4E26268C8E0015DEDB /* GithubAPI.swift in Sources */,
@@ -524,9 +595,14 @@
 				FFC6D0B32627F23D007920C5 /* PrefecturesListTableViewCell.swift in Sources */,
 				AAEDBB612629758D000FE023 /* DetailsViewController.swift in Sources */,
 				FFD148A426267B1300263EC8 /* AppDelegate.swift in Sources */,
+				FF44CFDB263ADB1E00DD776A /* MenuTableViewCell.swift in Sources */,
+				FF774E0B2639514F0087C262 /* LicenceListViewController.swift in Sources */,
+				FF17C914263B21CA00FC6D80 /* LicenceTableViewCell.swift in Sources */,
+				FF774E0726393BCF0087C262 /* StackViewFrame.swift in Sources */,
 				FFAC3E4B26268A980015DEDB /* PrefecturesUseCase.swift in Sources */,
 				FFD148A626267B1300263EC8 /* SceneDelegate.swift in Sources */,
 				FFC6D0B6262820E4007920C5 /* APIError.swift in Sources */,
+				FF17C918263B27CE00FC6D80 /* LicenceContentViewController.swift in Sources */,
 				FF735BD4262D5AD4007CDEB5 /* DetailsPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

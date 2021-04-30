@@ -11,7 +11,7 @@ protocol  DetailsPresenterInput{
     func getPrefecturesInfo(id: Int)
 }
 protocol  DetailsPresenterOutput:class {
-    func setTitle(name: String)
+    func setTitle(name: String, population: String)
     func setContent(details: [[String]])
 }
 
@@ -32,6 +32,6 @@ extension DetailsPresenter: DetailsPresenterInput{
         model.getDetails(id: id)
         let details = Details.detailsToArray(prefectures: self.model.details)
         delegate.setContent(details: details)
-        delegate.setTitle(name: self.model.details.name)
+        delegate.setTitle(name: self.model.details.name, population: String(self.model.details.population))
     }
 }
