@@ -13,7 +13,7 @@ https://github.com/ryo-ma/covid19-japan-web-api/blob/master/README.ja.md
 - コロナ感染情報詳細表示画面  
 
 #### 都道府県一覧表示画面  
-<img src="https://user-images.githubusercontent.com/24288482/115819973-e1e6f480-a43a-11eb-8b57-ed17f1b91c24.png" alt="都道府県一覧画面" title="都道府県一覧画面" width="400" height="600">  
+<img src="https://user-images.githubusercontent.com/24288482/117226440-a2170880-ae4f-11eb-83a7-e2c2c96d5432.png" alt="都道府県一覧画面" title="都道府県一覧画面" width="400" height="600">  
   
 - 画面表示項目  
     - 上記APIより取得した都道府県の名前一覧    
@@ -22,7 +22,7 @@ https://github.com/ryo-ma/covid19-japan-web-api/blob/master/README.ja.md
 また、都道府県名を選択するとコロナ感染情報画面を表示する  
   
 #### コロナ感染情報表示画面
-<img src="https://user-images.githubusercontent.com/24288482/115819994-ef03e380-a43a-11eb-9f06-be59fbda05b7.png" alt="コロナ感染情報表示画面" title="コロナ感染情報表示画面" width="400" height="600">  
+<img src="https://user-images.githubusercontent.com/24288482/117226451-a9d6ad00-ae4f-11eb-9428-f2986a7facf4.png" alt="コロナ感染情報表示画面" title="コロナ感染情報表示画面" width="400" height="600">  
   
 都道府県一覧画面で選択された都道府県の詳細を表示  
 - 画面表示項目  

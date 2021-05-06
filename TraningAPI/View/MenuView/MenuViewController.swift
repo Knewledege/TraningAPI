@@ -9,7 +9,7 @@ import UIKit
 
 class MenuViewController: UIViewController {
     // サイドメニュー
-    private let menuView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width / 2, height: UIScreen.main.bounds.height))
+    private let menuView: UIView = UIView(frame: CGRect(x: UIScreen.main.bounds.midX, y: 0, width: UIScreen.main.bounds.width / 2, height: UIScreen.main.bounds.height))
     // 戻るボタン
     private let buckViewButton: UIButton = UIButton(frame: CGRect(x: 10, y: 35, width: 70, height: 70))
     // メニューリスト
@@ -38,7 +38,7 @@ class MenuViewController: UIViewController {
         // 移動位置
         let menuPosition: CGPoint = self.menuView.layer.position
         // 初期位置
-        self.menuView.layer.position.x = -self.menuView.frame.width
+        self.menuView.layer.position.x = +self.menuView.frame.width
         // アニメーション開始
         animateMenuView(position: menuPosition.x, dismiss: false)
 
@@ -83,7 +83,7 @@ class MenuViewController: UIViewController {
 
     /// 戻るボタン押下時
     @objc func viewDismiss(){
-        animateMenuView(position: -self.menuView.frame.width, dismiss: true)
+        animateMenuView(position: +self.menuView.frame.width, dismiss: true)
     }
 
     /// サイドメニュー外押下時
