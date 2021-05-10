@@ -16,13 +16,14 @@ https://github.com/ryo-ma/covid19-japan-web-api/blob/master/README.ja.md
 - ライセンス表記画面
 
 #### 都道府県一覧表示画面  
-<img src="https://user-images.githubusercontent.com/24288482/117592989-99874080-b175-11eb-8020-633edc92b93e.png" alt="都道府県一覧画面" title="都道府県一覧画面" width="400" height="600">  
+<img src="https://user-images.githubusercontent.com/24288482/117606632-43c29080-b195-11eb-99cf-0ca7fc7ebe9b.png" alt="都道府県一覧画面" title="都道府県一覧画面" width="400" height="600">  
   
 - 画面表示項目  
     - 上記APIより取得した都道府県の名前一覧    
     - API取得最終更新日時表示  
 
 また、都道府県名を選択するとコロナ感染情報画面を表示する  
+右上の更新ボタンを押すと、最新情報を取得しコロナ感染情報を更新する。
   
 #### コロナ感染情報表示画面
 <img src="https://user-images.githubusercontent.com/24288482/117592999-a0ae4e80-b175-11eb-8ba5-cc4a33fdf50e.png" alt="コロナ感染情報表示画面" title="コロナ感染情報表示画面" width="400" height="600">  

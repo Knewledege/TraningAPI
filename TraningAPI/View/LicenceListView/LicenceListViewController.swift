@@ -16,7 +16,6 @@ class LicenceListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemGray6
-        self.navigationController?.navigationBar.isHidden = false
         self.navigationItem.title = ConstEntity.LICENCETITLE
         
         // メニューリスト設定

@@ -21,12 +21,8 @@ class PrefecturesListViewController: UIViewController{
         }
     }
     @IBOutlet weak var lastUpdateLabel: UILabel!
-    @IBOutlet weak var reloadButton: UIButton!{
-        didSet{
-            reloadButton.addTarget(self,action: #selector(reloadTableView), for: .touchUpInside)
-            reloadButton.isEnabled = false
-        }
-    }
+    let reloadButton =  UIBarButtonItem(image: UIImage(systemName: "arrow.clockwise"), style: .done, target: self, action: #selector(reloadTableView))
+        
     
     
     override func viewDidLoad() {
@@ -34,6 +30,7 @@ class PrefecturesListViewController: UIViewController{
         presenter = PrefecturesPresenter(delegate: self)
         print("Presenterに情報取得の指示")
         presenter.getPrefecturesModel(updateComp: true)
+        navigationItem.rightBarButtonItems = [reloadButton]
     }
     deinit {
         print("prefectureslist", #function)
@@ -41,7 +38,6 @@ class PrefecturesListViewController: UIViewController{
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         print(#function)
-        self.navigationController?.navigationBar.isHidden = true
         self.delegate?.viewWillAppear()
         
         print(self.parent?.parent)

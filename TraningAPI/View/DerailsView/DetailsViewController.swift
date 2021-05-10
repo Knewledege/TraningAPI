@@ -58,7 +58,6 @@ class DetailsViewController: UIViewController {
     // MARK: -
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.isHidden = false
         preseter = DetailsPresenter(delegate: self)
         
         self.view.backgroundColor = .white
