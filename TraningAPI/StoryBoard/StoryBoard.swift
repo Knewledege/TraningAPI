@@ -35,11 +35,7 @@ enum Board {
             nextVC?.id = id
             return nextVC
         case .menuView:
-            let nextV = MenuViewController()
-            let nextVC = UINavigationController(rootViewController: nextV)
-            nextVC.navigationController?.navigationBar.isHidden = true
-            nextV.navigationController?.navigationBar.isHidden = true
-            nextVC.modalPresentationStyle = .overCurrentContext
+            let nextVC = MenuViewController()
             return nextVC
         case .licenceList:
             let nextVC = LicenceListViewController()
@@ -55,21 +51,17 @@ enum Board {
 
 final class StoryBoard{
     //    MARK: - Screen Transition　画面遷移
-    ///
     /// - Parameters:
     ///   - id :Prefecturesテーブルのid
     ///   - to:遷移先のViewController
     ///   - from:遷移元のViewController
-    ///Present Modal遷移
-    static func perform(id:Int, to:Board, from:UIViewController){
-        if let nextVC = to.boardInit(id: id){
-            from.present(nextVC, animated: false, completion: nil)
-        }
-    }
     ///Show遷移
-    static func performNavi(id:Int, to:Board, from:UIViewController){
+    static func perform(id:Int, to:Board, from:UIViewController){
         if let nextVC = to.boardInit(id: id){
             from.navigationController?.pushViewController(nextVC, animated: true)
         }
     }
+    deinit {
+          print("storyboard", #function)
+      }
 }

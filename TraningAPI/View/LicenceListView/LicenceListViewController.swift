@@ -58,7 +58,7 @@ extension LicenceListViewController: UITableViewDelegate{
         return 60
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        StoryBoard.performNavi(id: indexPath.row, to: Board.licenceContent, from: self)
+        StoryBoard.perform(id: indexPath.row, to: Board.licenceContent, from: self)
     }
 }
 extension LicenceListViewController: UITableViewDataSource{

@@ -8,39 +8,41 @@
 import UIKit
 
 class MenuViewController: UIViewController {
+    
+    var delegate: RootContainerDelegate?
     // サイドメニュー
-    private let menuView: UIView = UIView(frame: CGRect(x: UIScreen.main.bounds.midX, y: 0, width: UIScreen.main.bounds.width / 2, height: UIScreen.main.bounds.height))
-    // 戻るボタン
-    private let buckViewButton: UIButton = UIButton(frame: CGRect(x: 10, y: 35, width: 70, height: 70))
+//    private let leftMenuView: UIView = UIView(frame: CGRect(x: UIScreen.main.bounds.minX, y: 0, width: (UIScreen.main.bounds.width / 3) * 2, height: UIScreen.main.bounds.height))
+
     // メニューリスト
     private let menuTableView:UITableView = UITableView(frame: .zero, style: .grouped)
     // メニュー名
     private let menuList: [String] = MenuListEntity.MENULIST
     
+    weak var story: StoryBoard?
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // サイドメニュー設定
-        menuView.layer.backgroundColor = UIColor.white.cgColor
-        self.view.addSubview(menuView)
+        self.view.layer.backgroundColor = UIColor.white.cgColor
+//        self.view.addSubview(leftMenuView)
+//        self.view.layer.backgroundColor = UIColor.red.cgColor
         
-        //戻るボタン設定
-        backViewButtonConfigure()
-        menuView.addSubview(buckViewButton)
+//        leftMenuView.translatesAutoresizingMaskIntoConstraints = false
         
         // メニューリスト設定
         tableViewConfigure()
-        menuView.addSubview(menuTableView)
+//        leftMenuView.addSubview(menuTableView)
+        self.view.addSubview(menuTableView)
+       
         // メニューリストレイアウト指定
         tableViewLayout()
-        
         // 移動位置
-        let menuPosition: CGPoint = self.menuView.layer.position
+//        let menuPosition: CGPoint = self.leftMenuView.layer.position
         // 初期位置
-        self.menuView.layer.position.x = +self.menuView.frame.width
+//        self.leftMenuView.layer.position.x = -self.leftMenuView.frame.width
         // アニメーション開始
-        animateMenuView(position: menuPosition.x, dismiss: false)
+//        animateMenuView(position: menuPosition.x, dismiss: false)
 
     }
     /// メニューリスト設定
@@ -53,46 +55,9 @@ class MenuViewController: UIViewController {
     }
     ///メニューリスト レイアウト指定
     private func tableViewLayout(){
-        self.menuTableView.translatesAutoresizingMaskIntoConstraints = false
-        self.menuTableView.topAnchor.constraint(equalTo: self.buckViewButton.bottomAnchor, constant: 10).isActive = true
-        self.menuTableView.widthAnchor.constraint(equalTo: self.menuView.widthAnchor).isActive = true
-        self.menuTableView.bottomAnchor.constraint(equalTo: self.menuView.bottomAnchor).isActive = true
-    }
-    /// 戻るボタン設定
-    private func backViewButtonConfigure(){
-        buckViewButton.setImage(UIImage(systemName: "xmark"), for: .normal)
-        buckViewButton.tintColor = .black
-        buckViewButton.addTarget(self, action: #selector(viewDismiss), for: .touchUpInside)
-    }
-    /// サイドメニュー開閉のアニメーション
-    private func animateMenuView(position: CGFloat, dismiss: Bool){
-        // 表示アニメーション
-        UIView.animate(
-            withDuration: 0.5,
-            delay: 0,
-            options: .curveEaseOut,
-            animations: {
-                self.menuView.layer.position.x = position
-        },
-            completion: { bool in
-                if dismiss{
-                    self.dismiss(animated: false, completion: nil)
-                }
-        })
-    }
-
-    /// 戻るボタン押下時
-    @objc func viewDismiss(){
-        animateMenuView(position: +self.menuView.frame.width, dismiss: true)
-    }
-
-    /// サイドメニュー外押下時
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesBegan(touches, with: event)
-
-        if touches.first != nil{
-            viewDismiss()
-        }
+        self.menuTableView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 80).isActive = true
+        self.menuTableView.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
+        self.menuTableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
     }
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = true
@@ -116,7 +81,7 @@ extension MenuViewController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // 工事中が存在するため
         if let board = MenuListEntity.MENULISTIDENTIFER[indexPath.row]{
-            StoryBoard.performNavi(id: 0, to: board, from: self)
+            self.delegate?.setMenuID(to: board)
         }
     }
 }

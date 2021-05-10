@@ -11,18 +11,13 @@ import UIKit
 class PrefecturesListViewController: UIViewController{
     
     private var presenter: PrefecturesPresenterInput!
-
+    weak var delegate: RootContainerDelegate?
+    
     @IBOutlet weak var prefecturesListTableView: UITableView!{
         didSet{
             prefecturesListTableView.delegate = self
             prefecturesListTableView.dataSource = self
             prefecturesListTableView.register(UINib(nibName: PrefecturesListTableViewCell.cellIdentifer, bundle: nil), forCellReuseIdentifier: PrefecturesListTableViewCell.cellIdentifer)
-        }
-    }
-    
-    @IBOutlet weak var menuViewToggle: UIButton!{
-        didSet{
-            menuViewToggle.addTarget(self, action: #selector(menuView), for: .touchUpInside)
         }
     }
     @IBOutlet weak var lastUpdateLabel: UILabel!
@@ -33,16 +28,23 @@ class PrefecturesListViewController: UIViewController{
         }
     }
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter = PrefecturesPresenter(delegate: self)
         print("Presenterに情報取得の指示")
         presenter.getPrefecturesModel(updateComp: true)
-        self.navigationController?.navigationBar.isHidden = true
-        
     }
-    @objc func menuView(){
-        StoryBoard.perform(id: 0, to: .menuView, from: self)
+    deinit {
+        print("prefectureslist", #function)
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        print(#function)
+        self.navigationController?.navigationBar.isHidden = true
+        self.delegate?.viewWillAppear()
+        
+        print(self.parent?.parent)
     }
     @objc func reloadTableView(){
         presenter.getPrefecturesModel(updateComp: false)
@@ -75,6 +77,7 @@ extension PrefecturesListViewController:UITableViewDelegate{
          */
         if let indexRow = RegionModel.Region(rawValue: indexPath.section)?.prefecturesID[indexPath.row]{
             StoryBoard.perform(id: indexRow+1, to: Board.details, from: self)
+            self.delegate?.viewWillAppear()
         }
         
     }

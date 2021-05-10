@@ -17,6 +17,8 @@
 		FF17C918263B27CE00FC6D80 /* LicenceContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF17C917263B27CE00FC6D80 /* LicenceContentViewController.swift */; };
 		FF44CFDB263ADB1E00DD776A /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF44CFD9263ADB1E00DD776A /* MenuTableViewCell.swift */; };
 		FF44CFDC263ADB1E00DD776A /* MenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF44CFDA263ADB1E00DD776A /* MenuTableViewCell.xib */; };
+		FF6147D92643EFFA00099CAC /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF6147D82643EFFA00099CAC /* RootViewController.swift */; };
+		FF6147DB26443CFC00099CAC /* RootPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF6147DA26443CFC00099CAC /* RootPresenter.swift */; };
 		FF62CD422637AFA4003DB240 /* ConstEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF62CD412637AFA3003DB240 /* ConstEntity.swift */; };
 		FF735BD4262D5AD4007CDEB5 /* DetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF735BD3262D5AD4007CDEB5 /* DetailsPresenter.swift */; };
 		FF774E04263926600087C262 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF774E02263926600087C262 /* MenuViewController.swift */; };
@@ -77,6 +79,8 @@
 		FF17C917263B27CE00FC6D80 /* LicenceContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicenceContentViewController.swift; sourceTree = "<group>"; };
 		FF44CFD9263ADB1E00DD776A /* MenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
 		FF44CFDA263ADB1E00DD776A /* MenuTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuTableViewCell.xib; sourceTree = "<group>"; };
+		FF6147D82643EFFA00099CAC /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		FF6147DA26443CFC00099CAC /* RootPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootPresenter.swift; sourceTree = "<group>"; };
 		FF62CD412637AFA3003DB240 /* ConstEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstEntity.swift; sourceTree = "<group>"; };
 		FF735BD3262D5AD4007CDEB5 /* DetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsPresenter.swift; sourceTree = "<group>"; };
 		FF774E02263926600087C262 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
@@ -216,6 +220,14 @@
 			path = LicenceListView;
 			sourceTree = "<group>";
 		};
+		FF6147D72643EFE000099CAC /* RootViewController */ = {
+			isa = PBXGroup;
+			children = (
+				FF6147D82643EFFA00099CAC /* RootViewController.swift */,
+			);
+			path = RootViewController;
+			sourceTree = "<group>";
+		};
 		FFAC3E4726267D090015DEDB /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -229,6 +241,7 @@
 		FFAC3E4826267D100015DEDB /* View */ = {
 			isa = PBXGroup;
 			children = (
+				FF6147D72643EFE000099CAC /* RootViewController */,
 				FF44CFDD263B1C7E00DD776A /* PrefecturesListView */,
 				FF44CFDE263B1CA300DD776A /* DerailsView */,
 				FF44CFDF263B1CB200DD776A /* MenuView */,
@@ -244,6 +257,7 @@
 			children = (
 				FFAC3E532626BA2D0015DEDB /* PrefecturesPresenter.swift */,
 				FF735BD3262D5AD4007CDEB5 /* DetailsPresenter.swift */,
+				FF6147DA26443CFC00099CAC /* RootPresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -586,7 +600,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which \"${PODS_ROOT}/SwiftLint/swiftlint\" >/dev/null; then\n  \"${PODS_ROOT}/SwiftLint/swiftlint\"\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n#if which \"${PODS_ROOT}/SwiftLint/swiftlint\" >/dev/null; then\n#  \"${PODS_ROOT}/SwiftLint/swiftlint\"\n#else\n#  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\n#fi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -609,6 +623,7 @@
 				FFD148A426267B1300263EC8 /* AppDelegate.swift in Sources */,
 				FF44CFDB263ADB1E00DD776A /* MenuTableViewCell.swift in Sources */,
 				FF774E0B2639514F0087C262 /* LicenceListViewController.swift in Sources */,
+				FF6147D92643EFFA00099CAC /* RootViewController.swift in Sources */,
 				FF17C914263B21CA00FC6D80 /* LicenceTableViewCell.swift in Sources */,
 				FF774E0726393BCF0087C262 /* StackViewFrame.swift in Sources */,
 				FFAC3E4B26268A980015DEDB /* PrefecturesUseCase.swift in Sources */,
@@ -616,6 +631,7 @@
 				FFC6D0B6262820E4007920C5 /* APIError.swift in Sources */,
 				FF17C918263B27CE00FC6D80 /* LicenceContentViewController.swift in Sources */,
 				FF735BD4262D5AD4007CDEB5 /* DetailsPresenter.swift in Sources */,
+				FF6147DB26443CFC00099CAC /* RootPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
