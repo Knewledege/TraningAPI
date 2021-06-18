@@ -11,21 +11,23 @@ import PromiseKit
 import Reachability
 
 
-protocol PrefecturesInput{
-    func getPregectures(executionRequest:Bool) -> Promise<[Prefectures]>
-    func getDetails(id: Int)
-    var prefectures: [Prefectures] { get }
-    var details: Prefectures! { get }
+@objc protocol PrefecturesInput {
+    @objc func getPregectures(executionRequest:Bool) -> AnyPromise
+    @objc func getDetails(id: Int)
+    @objc var prefectures: [Prefectures] { get }
+    @objc var details: Prefectures! { get }
 }
-
+/*
 class PrefecturesUseCase{
     internal var prefectures: [Prefectures] = []
     internal var details: Prefectures!
     private let api:GithubAPI!
     private let realmDB:RealmDB!
+//    private let sqLite: SQLite!
     private let reachability:Reachability!
    
     init(api: GithubAPI = GithubAPI(), localDB: RealmDB = RealmDB()){
+//    init(api: GithubAPI = GithubAPI(), localDB: SQLite = SQLite()){
         self.api = api
         self.realmDB = localDB
         
@@ -51,6 +53,7 @@ extension PrefecturesUseCase:PrefecturesInput{
         
         //DB全取得
         let dbResult = realmDB.getPrefecturesByRealmDB()
+//        let dbResult = sqLite.fetchPrefectures()
         
         //DBにデータがある場合
         if let result = dbResult{
@@ -70,26 +73,27 @@ extension PrefecturesUseCase:PrefecturesInput{
         }
         
         //DBに値がない場合かつ、1分以上の場合はAPI叩く
-        firstly {
-            //APIを取得
-            self.api.prefecturesAPI()
-        }.then{ result in
-            //APIのレスポンスをデコード
-            DecodePrefectures.jsonDecode(data: result)
-        }.done{ prefectures in//staticメソッドだから強参照ではないと考え [weak self]を除外　[weak self]に関してはもう少し理解が必要
-            
-            self.prefectures = prefectures
-            if dbResult == nil {
-                //データベースに追加
-                self.realmDB.setPrefecturesOnRealmDB(prefectures: self.prefectures)
-            }else{
-                //データベースを更新
-                self.realmDB.updatePrefecturesOnRealmDB(prefectures: self.prefectures)
-            }
-            resolver.fulfill(self.prefectures)
-        }.catch{ error in
-            resolver.reject(error)
-        }
+//        firstly {
+//            //APIを取得
+//            self.api.prefecturesAPI()
+//        }.then{ result in
+//            //APIのレスポンスをデコード
+//            DecodePrefectures.jsonDecode(data: result)
+//        }.done{ prefectures in//staticメソッドだから強参照ではないと考え [weak self]を除外　[weak self]に関してはもう少し理解が必要
+//            
+//            self.prefectures = prefectures
+//            if dbResult == nil {
+//                //データベースに追加
+//                self.realmDB.setPrefecturesOn(self.prefectures)
+//            }else{
+//                //データベースを更新
+//                self.realmDB.updatePrefectures(onRealmDB: self.prefectures)
+//            }
+////            self.sqLite.insertPrefectures(prefectures: self.prefectures)
+//            resolver.fulfill(self.prefectures)
+//        }.catch{ error in
+//            resolver.reject(error)
+//        }
         return promise
     }
     
@@ -108,7 +112,10 @@ extension PrefecturesUseCase:PrefecturesInput{
     }
     //    MARK: - 該当レコードをデータベースより取得
     internal func getDetails(id: Int){
-        self.details = realmDB.getprefecturesByID(id: id)
+        self.details = realmDB.getprefectures(byID: Int32(id))
+//        self.details = sqLite.getprefecturesByID(id: id)
     }
     
 }
+
+*/

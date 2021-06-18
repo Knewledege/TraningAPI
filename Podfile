@@ -6,10 +6,12 @@ target 'TraningAPI' do
   use_frameworks!
   pod "PromiseKit", "~> 6.8"
   pod "Alamofire"
-  pod "RealmSwift"
+  pod "Realm"
+  #pod "RealmSwift", "~>10.7.2"
   pod 'ReachabilitySwift'
   pod 'SwiftLint'
-
+  pod 'GRDB.swift'
+  pod 'AFNetworking', '~> 4.0'
 
   # Pods for TraningAPI
 

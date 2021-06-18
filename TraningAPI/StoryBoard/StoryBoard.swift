@@ -11,15 +11,39 @@ enum Board {
 
     case prefecturesList
     case details
+    case menuView
+    case licenceList
+    case licenceContent
     
-    func boardInit(id: Int) -> UIViewController{
+    var identifer: String{
+        switch self {
+        case .prefecturesList: return "PrefecturesListViewController"
+        case .details:         return "DetailsViewController"
+        case .menuView:        return "MenuViewController"
+        case .licenceList:     return "LicenceListViewController"
+        case .licenceContent:  return "LicenceContentViewController"
+        }
+    }
+    
+    func boardInit(id: Int) -> UIViewController?{
         switch self {
         case .prefecturesList:
-            let nextVC = PrefecturesListViewController()
+            let nextVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: self.identifer) as? PrefecturesListViewController
             return nextVC
         case .details:
-            let nextVC = DetailsViewController()
-            nextVC.id = id
+            let nextVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: self.identifer) as? DetailsViewController
+            nextVC?.id = id
+            return nextVC
+        case .menuView:
+            let nextVC = MenuViewController()
+            return nextVC
+        case .licenceList:
+            let nextVC = LicenceListViewController()
+            return nextVC
+        case .licenceContent:
+            let nextVC = LicenceContentViewController()
+            nextVC.title = ConstEntity.LIBRARYTITLE[id]
+            nextVC.content = ConstEntity.LIBRARYCONTENT[id]
             return nextVC
         }
     }
@@ -27,13 +51,17 @@ enum Board {
 
 final class StoryBoard{
     //    MARK: - Screen Transition　画面遷移
-    ///
     /// - Parameters:
     ///   - id :Prefecturesテーブルのid
     ///   - to:遷移先のViewController
     ///   - from:遷移元のViewController
+    ///Show遷移
     static func perform(id:Int, to:Board, from:UIViewController){
-        let nextVC = to.boardInit(id: id)
-        from.present(nextVC, animated: true, completion: nil)
+        if let nextVC = to.boardInit(id: id){
+            from.navigationController?.pushViewController(nextVC, animated: true)
+        }
     }
+    deinit {
+          print("storyboard", #function)
+      }
 }
