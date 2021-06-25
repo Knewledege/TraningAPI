@@ -11,12 +11,12 @@ import PromiseKit
 import Reachability
 
 
-@objc protocol PrefecturesInput {
-    @objc func getPregectures(executionRequest:Bool) -> AnyPromise
-    @objc func getDetails(id: Int)
-    @objc var prefectures: [Prefectures] { get }
-    @objc var details: Prefectures! { get }
-}
+//@objc protocol PrefecturesInput {
+//    @objc func getPregectures(executionRequest:Bool) -> AnyPromise
+//    @objc func getDetails(id: Int)
+//    @objc var prefectures: [Prefectures] { get }
+//    @objc var details: Prefectures! { get }
+//}
 /*
 class PrefecturesUseCase{
     internal var prefectures: [Prefectures] = []

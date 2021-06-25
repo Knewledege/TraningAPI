@@ -20,5 +20,5 @@
 - (void)setPrefecturesOnRealmDB:(NSArray<Prefectures *> *)prefectures;
 - (void)updatePrefecturesOnRealmDB:(NSArray<Prefectures *> *)prefectures;
 - (NSArray<Prefectures *> *)getPrefecturesByRealmDB;
-- (Prefectures *)getprefecturesByID: (int)idNumber;
+- (Prefectures *)getPrefecturesByID: (int)idNumber;
 @end

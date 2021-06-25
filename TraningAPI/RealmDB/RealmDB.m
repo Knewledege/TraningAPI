@@ -6,8 +6,7 @@
 //  Copyright © 2021 k-takahashi. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <TraningAPI-Swift.h>
+#import "PrefecturesEntity.h"
 #import "RealmDB.h"
 
 @implementation RealmDB
@@ -49,10 +48,9 @@ static RealmDB *shared_ = nil;
     NSArray<Prefectures *> *prefectures = tempPrefectures;
     return prefectures;
 }
-- (Prefectures *)getprefecturesByID: (int)idNubmer {
-    NSString *idString = [NSString stringWithFormat:@"%d", idNubmer];
-    RLMResults<Prefectures *> *result = [Prefectures objectsWhere:idString];
-    Prefectures *prefectures = result[0];
-    return prefectures;
+- (Prefectures *)getPrefecturesByID: (int)idNubmer {
+    id idObject = [NSNumber numberWithInt:idNubmer];
+    Prefectures *result = [Prefectures objectInRealm: self.realm forPrimaryKey:idObject];
+    return result;
 }
 @end

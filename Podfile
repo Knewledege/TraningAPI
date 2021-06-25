@@ -5,11 +5,8 @@ target 'TraningAPI' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
   pod "PromiseKit", "~> 6.8"
-  pod "Alamofire"
   pod "Realm"
-  #pod "RealmSwift", "~>10.7.2"
-  pod 'ReachabilitySwift'
-  pod 'SwiftLint'
+  pod 'Reachability'
   pod 'GRDB.swift'
   pod 'AFNetworking', '~> 4.0'
 

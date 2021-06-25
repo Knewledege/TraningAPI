@@ -12,6 +12,8 @@
 #endif /* GithubAPI_h */
 #import <PromiseKit/PromiseKit.h>
 #import <AnyPromise.h>
+#import <AFNetworking.h>
+
 @interface GithubAPI : NSObject
 - (AnyPromise *)prefecturesAPI;
 @end
