@@ -14,9 +14,6 @@ PODS:
   - AFNetworking/Serialization (4.0.1)
   - AFNetworking/UIKit (4.0.1):
     - AFNetworking/NSURLSession
-  - GRDB.swift (5.8.0):
-    - GRDB.swift/standard (= 5.8.0)
-  - GRDB.swift/standard (5.8.0)
   - PromiseKit (6.15.3):
     - PromiseKit/CorePromise (= 6.15.3)
     - PromiseKit/Foundation (= 6.15.3)
@@ -27,32 +24,29 @@ PODS:
   - PromiseKit/UIKit (6.15.3):
     - PromiseKit/CorePromise
   - Reachability (3.2)
-  - Realm (10.8.0):
-    - Realm/Headers (= 10.8.0)
-  - Realm/Headers (10.8.0)
+  - Realm (10.8.1):
+    - Realm/Headers (= 10.8.1)
+  - Realm/Headers (10.8.1)
 
 DEPENDENCIES:
   - AFNetworking (~> 4.0)
-  - GRDB.swift
   - PromiseKit (~> 6.8)
-  - Reachability
-  - Realm
+  - Reachability (~> 3.2.0)
+  - Realm (~> 10.8.1)
 
 SPEC REPOS:
   trunk:
     - AFNetworking
-    - GRDB.swift
     - PromiseKit
     - Reachability
     - Realm
 
 SPEC CHECKSUMS:
   AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
-  GRDB.swift: 9b9beec114435e1d852ad68c136cff4c71134627
   PromiseKit: 3b2b6995e51a954c46dbc550ce3da44fbfb563c5
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
-  Realm: ad3c5cd762e5a5bc02080fc55aa04a0e43f98575
+  Realm: a2db54d9dcceddeba936b429f5b3d6610a109686
 
-PODFILE CHECKSUM: 13fa69e943f431986ad3ad5ac4028f2c6f0c7991
+PODFILE CHECKSUM: 2190f4a996c57aa6bae11cab2a7b6afb705c75c6
 
 COCOAPODS: 1.10.0
