@@ -1,6 +1,8 @@
 # TraningAPI
 コロナ感染情報を表示するiOSアプリ  
-  
+  Xcodeバージョン: 11.0  
+  Simulators           : iPhone11  
+  iOSバージョン    : 13.5  
 ## 主な機能  
 下記WebAPIよりコロナ感染情報を取得  
 https://github.com/ryo-ma/covid19-japan-web-api/blob/master/README.ja.md  

@@ -7,10 +7,9 @@
 //
 
 import Foundation
-import RealmSwift
-import PromiseKit
 import GRDB
-
+import RxSwift
+import RxCocoa
 /*
 //    MARK: - 都道府県情報テーブル
 class Prefectures: Object, Codable {
@@ -155,17 +154,17 @@ struct LastUpdate : Codable {
 
 //    MARK: - Jsonデータを復号
 class DecodePrefectures{
-    static func jsonDecode(data:Data) -> Promise<[Prefectures]>{
-        var result: [Prefectures]
-        let (promise, resolver) = Promise<[Prefectures]>.pending()
-        do{
-            result = try JSONDecoder().decode([Prefectures].self, from: data)
-            resolver.fulfill(result)
-        }catch{
-            resolver.reject(APIError.decodeError)
-            print("デコードできませんでした")
+    static func jsonDecode(data:Data) -> Single<[Prefectures]>{
+        return Single.create { event in
+            do{
+                let result = try JSONDecoder().decode([Prefectures].self, from: data)
+                event(.success(result))
+            }catch{
+                event(.failure(APIError.decodeError))
+                print("デコードできませんでした")
+            }
+            return Disposables.create()
         }
-        return promise
     }
     deinit {
         print("decodeprefectures deinit")

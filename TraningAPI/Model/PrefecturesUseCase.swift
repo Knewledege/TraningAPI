@@ -9,6 +9,8 @@
 import Foundation
 import PromiseKit
 import Reachability
+import RxSwift
+import RxCocoa
 
 
 protocol PrefecturesInput{
@@ -18,13 +20,14 @@ protocol PrefecturesInput{
     var details: Prefectures! { get }
 }
 
-class PrefecturesUseCase{
+class PrefecturesUseCase {
     internal var prefectures: [Prefectures] = []
     internal var details: Prefectures!
     private let api:GithubAPI!
 //    private let realmDB:RealmDB!
     private let sqLite: SQLite!
     private let reachability:Reachability!
+    private let disposeBag = DisposeBag()
    
 //    init(api: GithubAPI = GithubAPI(), localDB: RealmDB = RealmDB()){
     init(api: GithubAPI = GithubAPI(), localDB: SQLite = SQLite()){
@@ -72,28 +75,18 @@ extension PrefecturesUseCase:PrefecturesInput{
             }
         }
         
-        //DBに値がない場合かつ、1分以上の場合はAPI叩く
-        firstly {
-            //APIを取得
-            self.api.prefecturesAPI()
-        }.then{ result in
-            //APIのレスポンスをデコード
-            DecodePrefectures.jsonDecode(data: result)
-        }.done{ prefectures in//staticメソッドだから強参照ではないと考え [weak self]を除外　[weak self]に関してはもう少し理解が必要
-            
-            self.prefectures = prefectures
-//            if dbResult == nil {
-//                //データベースに追加
-//                self.realmDB.setPrefecturesOnRealmDB(prefectures: self.prefectures)
-//            }else{
-//                //データベースを更新
-//                self.realmDB.updatePrefecturesOnRealmDB(prefectures: self.prefectures)
-//            }
-            self.sqLite.insertPrefectures(prefectures: self.prefectures)
-            resolver.fulfill(self.prefectures)
-        }.catch{ error in
-            resolver.reject(error)
-        }
+        self.api.prefecturesAPI().subscribe(onSuccess: { [weak self] data in
+            guard let self = self else { return }
+            DecodePrefectures.jsonDecode(data: data).subscribe(onSuccess: { [weak self] result in
+                self?.prefectures = result
+                self?.sqLite.insertPrefectures(prefectures: result)
+                resolver.fulfill(result)
+            }, onFailure: { error in
+                 resolver.reject(error)
+            }).disposed(by:self.disposeBag )
+        }, onFailure: { error in
+             resolver.reject(error)
+        }).disposed(by: disposeBag )
         return promise
     }
     
